@@ -39,41 +39,6 @@ export default function LocationMap() {
               className="w-full h-full"
             ></iframe>
           </div>
-
-          {/* Address Card Overlay */}
-          <div className="absolute bottom-6 left-6 right-6 sm:left-8 sm:bottom-8 sm:right-auto sm:max-w-sm bg-white/95 backdrop-blur-lg rounded-2xl p-6 shadow-2xl border border-orange-100/50 animate-slide-in-left">
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 flex items-center gap-2">
-              <span className="text-2xl">📍</span>
-              <span className="bg-gradient-to-r from-orange-700 to-red-700 bg-clip-text text-transparent">
-                Our Address
-              </span>
-            </h3>
-            <p className="text-gray-700 leading-relaxed mb-4 font-light">
-              24, Carat Mithai Shop Building, H/7,<br />
-              Ghod Dod Rd, below Dhotiwala Bakery,<br />
-              Parle Point, Meghdoot Society,<br />
-              Athwalines, Athwa, Surat,<br />
-              Gujarat 395007
-            </p>
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 text-orange-600">
-                <span className="text-yellow-500">⭐</span>
-                <span className="font-bold text-lg">4.4</span>
-              </div>
-              <span className="text-gray-500 text-sm">1,764 reviews</span>
-            </div>
-            <a
-              href="https://www.google.com/maps/dir/?api=1&destination=24+Carats+Mithai+Magic,Ghod+Dod+Rd,Surat,Gujarat+395007"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-600 to-red-600 text-white font-semibold rounded-full hover:shadow-lg hover:from-orange-700 hover:to-red-700 transition-all duration-300 active:scale-95 w-full justify-center"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-              </svg>
-              Get Directions
-            </a>
-          </div>
         </div>
       </div>
     </section>
