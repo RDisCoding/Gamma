@@ -1,5 +1,90 @@
 @import "tailwindcss";
 
+/* FORCE HIDE Google Translate toolbar and all UI elements */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+div#goog-gt-,
+.goog-te-spinner-pos {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Force body positioning */
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
+html.translated-ltr,
+html.translated-rtl {
+  top: 0 !important;
+}
+
+/* Hide translate elements */
+#google_translate_element,
+#google_translate_element_mobile,
+#google_translate_element_hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Hide all Google Translate UI components */
+.goog-te-gadget,
+.goog-te-combo,
+.skiptranslate,
+.goog-logo-link,
+.goog-te-gadget > span,
+.goog-te-gadget > div,
+iframe.skiptranslate,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-aZ2wEe-OiiCO {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Prevent Google Translate banner frame */
+frame[id^="goog-gt-"],
+iframe[id^="goog-gt-"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* Prevent translation of language selector */
+.notranslate {
+  transform: none !important;
+}
+
+/* Fix for text clipping in non-Latin scripts (Gujarati, Hindi, etc.) */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.4 !important;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+/* Override leading-tight and leading-none for headings */
+h1.leading-tight, h2.leading-tight, h3.leading-tight,
+h1.leading-none, h2.leading-none, h3.leading-none {
+  line-height: 1.4 !important;
+}
+
+/* Ensure text doesn't overflow containers */
+* {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 255, 251, 245;

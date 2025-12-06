@@ -20,7 +20,7 @@ export default async function ServicesPage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-red-50">
       {/* Hero Section */}
-      <section className="pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-10 lg:pb-12 px-4 text-center">
+      <section className="pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-10 lg:pb-12 px-5 sm:px-6 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto animate-fade-in">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 gradient-text">
             Our Services
