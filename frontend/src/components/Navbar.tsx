@@ -165,13 +165,14 @@ export default function Navbar() {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/#about' },
     { name: 'Services', href: '/services' },
+    { name: 'Gallery', href: '/gallery' },
     { name: 'Reviews', href: '/#reviews' },
     { name: 'Contact', href: '/#contact' },
   ];
 
   return (
     <nav 
-      className={`fixed w-full z-50 bg-gradient-to-r from-orange-700 via-red-700 to-orange-700 text-white shadow-2xl backdrop-blur-sm transition-transform duration-300 border-b border-orange-500/20 ${
+      className={`fixed w-full z-50 bg-gradient-to-r from-rose-700 via-red-700 to-rose-700 text-white shadow-2xl backdrop-blur-sm transition-transform duration-300 border-b border-rose-500/20 ${
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >

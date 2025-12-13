@@ -37,7 +37,7 @@ export default function RootLayout({
         <ScrollToTop />
         <Navbar />
         {/* We add padding-top so the fixed Navbar doesn't cover content */}
-        <main className="pt-20 min-h-screen">
+        <main className="min-h-screen">
           {children}
         </main>
       </body>

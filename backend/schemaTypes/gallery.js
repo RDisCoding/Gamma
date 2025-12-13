@@ -6,36 +6,41 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title/Caption',
-      type: 'string',
-    }),
-    defineField({
-      name: 'type',
-      title: 'Content Type',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Photo', value: 'photo' },
-          { title: 'Video (YouTube)', value: 'video' },
-        ],
-        layout: 'radio',
-      },
-      initialValue: 'photo',
-    }),
-    defineField({
-      name: 'image',
-      title: 'Photo',
-      type: 'image',
-      hidden: ({ document }) => document?.type === 'video',
-      options: { hotspot: true },
-    }),
-    defineField({
-      name: 'videoUrl',
-      title: 'YouTube Video URL',
-      type: 'url',
-      hidden: ({ document }) => document?.type === 'photo',
-      description: 'Paste the full YouTube link (e.g., https://www.youtube.com/watch?v=...)',
+      name: 'images',
+      title: 'Gallery Images',
+      type: 'array',
+      description: 'Add images and drag to reorder them. The order here will be the display order on the website.',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'image',
+              title: 'Image',
+              type: 'image',
+              options: { hotspot: true },
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'caption',
+              title: 'Caption (optional)',
+              type: 'string',
+            }),
+          ],
+          preview: {
+            select: {
+              media: 'image',
+              title: 'caption',
+            },
+            prepare({ media, title }) {
+              return {
+                title: title || 'Untitled Image',
+                media,
+              }
+            },
+          },
+        },
+      ],
     }),
   ],
 })
