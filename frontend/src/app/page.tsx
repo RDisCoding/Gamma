@@ -37,7 +37,7 @@ export default async function Home() {
       <FloatingActions phone={company.phoneNumber} whatsapp={company.whatsappNumber} />
 
       {/* --- HERO --- */}
-      <section id="home" className="relative min-h-[85vh] sm:h-[90vh] flex items-center justify-center text-center text-white px-6 sm:px-8 lg:px-12 overflow-hidden">
+      <section id="home" className="relative min-h-[85vh] sm:h-[90vh] flex items-center justify-center text-center text-white px-4 sm:px-8 lg:px-12 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-rose-950/60 via-red-950/50 to-amber-950/60 z-10"></div>
           
@@ -61,7 +61,7 @@ export default async function Home() {
           {/* Animated gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/10 to-transparent z-20 animate-shimmer bg-[length:200%_100%]"></div>
         </div>
-        <div className="relative z-30 max-w-5xl mx-auto space-y-4 sm:space-y-6 lg:space-y-8 animate-fade-in-up px-6 sm:px-8">
+        <div className="relative z-30 max-w-5xl mx-auto space-y-4 sm:space-y-6 lg:space-y-8 animate-fade-in-up px-4 sm:px-8">
           <div className="inline-block px-4 sm:px-6 py-1.5 sm:py-2 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 backdrop-blur-md rounded-full border border-amber-400/40 mb-2">
             <span className="text-amber-200 text-xs sm:text-sm font-bold tracking-wider">✨ TRADITIONAL VEDIC SERVICES</span>
           </div>
@@ -76,21 +76,9 @@ export default async function Home() {
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </span>
             </Link>
-            {company.brochurePdf?.url ? (
-              <a 
-                href={company.brochurePdf.url} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                download
-                className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-4 bg-white/15 backdrop-blur-md hover:bg-amber-50/20 text-white text-sm sm:text-base font-bold rounded-full border-2 border-amber-200/40 hover:border-amber-300/60 shadow-lg transform hover:scale-105 transition-all duration-300"
-              >
-                Learn More
-              </a>
-            ) : (
-              <Link href="#services" className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-4 bg-white/15 backdrop-blur-md hover:bg-amber-50/20 text-white text-sm sm:text-base font-bold rounded-full border-2 border-amber-200/40 hover:border-amber-300/60 shadow-lg transform hover:scale-105 transition-all duration-300">
-                Learn More
-              </Link>
-            )}
+            <Link href="/learn-more" className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-4 bg-white/15 backdrop-blur-md hover:bg-amber-50/20 text-white text-sm sm:text-base font-bold rounded-full border-2 border-amber-200/40 hover:border-amber-300/60 shadow-lg transform hover:scale-105 transition-all duration-300">
+              Learn More
+            </Link>
           </div>
         </div>
       </section>
@@ -101,8 +89,8 @@ export default async function Home() {
         <div className="absolute top-0 left-0 w-72 h-72 bg-rose-200/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-200/15 rounded-full blur-3xl"></div>
         
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 grid md:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center relative z-10">
-          <div className="relative h-[280px] sm:h-[400px] lg:h-[500px] w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl group animate-slide-in-left">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 grid md:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center relative z-10">
+          <div className="relative h-[500px] w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl group animate-slide-in-left">
              {company.aboutImage && (
                 <Image src={urlFor(company.aboutImage).url()} alt="About" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
              )}
@@ -126,7 +114,7 @@ export default async function Home() {
               </div>
               <div className="bg-gradient-to-br from-white to-amber-50/30 p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg border border-amber-100 hover:shadow-xl hover:border-amber-200 transition-all duration-300">
                 <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-amber-600 to-rose-700 bg-clip-text text-transparent mb-1 sm:mb-2">1000+</div>
-                <div className="text-sm sm:text-base text-gray-600 font-medium">Happy Clients</div>
+                <div className="text-sm sm:text-base text-gray-600 font-medium">Happy Devotees</div>
               </div>
             </div>
           </div>
@@ -140,14 +128,14 @@ export default async function Home() {
           <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle, #FF9933 1px, transparent 1px)', backgroundSize: '50px 50px'}}></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 text-center relative z-10">
           <div className="inline-block px-3 sm:px-4 py-1 bg-gradient-to-r from-rose-100 via-red-100 to-amber-100 rounded-full mb-3 sm:mb-4">
             <span className="text-rose-800 text-xs sm:text-sm font-bold tracking-wider">OUR OFFERINGS</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-rose-700 via-red-800 to-amber-700 bg-clip-text text-transparent mb-3 sm:mb-4">
             Sacred Services
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto mb-8 sm:mb-12 lg:mb-16 font-light px-6 sm:px-8">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto mb-8 sm:mb-12 lg:mb-16 font-light px-4 sm:px-8">
             Experience the divine blessings through our traditional Vedic ceremonies
           </p>
           
@@ -209,7 +197,7 @@ export default async function Home() {
         <div className="absolute top-10 right-10 w-64 h-64 bg-rose-300/15 rounded-full blur-3xl"></div>
         <div className="absolute bottom-10 left-10 w-80 h-80 bg-amber-300/15 rounded-full blur-3xl"></div>
         
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
             <div className="inline-block px-3 sm:px-4 py-1 bg-gradient-to-r from-rose-100 via-amber-100 to-rose-100 rounded-full mb-3 sm:mb-4">
               <span className="text-rose-800 text-xs sm:text-sm font-bold tracking-wider">MEMORIES</span>
@@ -217,7 +205,7 @@ export default async function Home() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-rose-700 via-red-800 to-amber-700 bg-clip-text text-transparent mb-3 sm:mb-4">
               Sacred Moments
             </h2>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto font-light px-6 sm:px-8">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto font-light px-4 sm:px-8">
               Glimpses of divine ceremonies and blessed occasions
             </p>
           </div>
@@ -276,7 +264,7 @@ export default async function Home() {
           <div className="absolute top-10 right-10 w-64 h-64 bg-amber-300/15 rounded-full blur-3xl"></div>
           <div className="absolute bottom-10 left-10 w-80 h-80 bg-rose-300/15 rounded-full blur-3xl"></div>
           
-          <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-8 sm:mb-12 lg:mb-16">
               <div className="inline-block px-3 sm:px-4 py-1 bg-gradient-to-r from-amber-100 via-rose-100 to-amber-100 rounded-full mb-3 sm:mb-4">
                 <span className="text-amber-800 text-xs sm:text-sm font-bold tracking-wider">WATCH & EXPLORE</span>
@@ -284,7 +272,7 @@ export default async function Home() {
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-amber-700 via-red-800 to-rose-700 bg-clip-text text-transparent mb-3 sm:mb-4">
                 Informative Videos
               </h2>
-              <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto font-light px-6 sm:px-8">
+              <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto font-light px-4 sm:px-8">
                 Explore our collection of informative and tourism content
               </p>
             </div>
@@ -360,7 +348,7 @@ export default async function Home() {
       <section id="reviews" className="py-12 sm:py-16 lg:py-24 bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-rose-50/30 to-transparent"></div>
         
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
             <div className="inline-block px-3 sm:px-4 py-1 bg-gradient-to-r from-rose-100 via-red-100 to-amber-100 rounded-full mb-3 sm:mb-4">
               <span className="text-rose-800 text-xs sm:text-sm font-bold tracking-wider">TESTIMONIALS</span>
@@ -368,7 +356,7 @@ export default async function Home() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-rose-700 via-red-800 to-amber-700 bg-clip-text text-transparent mb-3 sm:mb-4">
               Blessed Experiences
             </h2>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto font-light px-6 sm:px-8">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto font-light px-4 sm:px-8">
               Hear what our devotees say about their spiritual journey
             </p>
           </div>
@@ -418,68 +406,53 @@ export default async function Home() {
       </section>
 
       {/* --- FAQS --- */}
-      <section id="faqs" className="py-24 bg-gradient-to-br from-rose-50/30 via-amber-50/50 to-white relative overflow-hidden">
+      <section id="faqs" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-rose-50/30 via-amber-50/50 to-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-rose-200/15 rounded-full blur-3xl"></div>
         
-        <div className="max-w-4xl mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-block px-4 py-1 bg-gradient-to-r from-rose-100 via-amber-100 to-rose-100 rounded-full mb-4">
-              <span className="text-rose-800 text-sm font-semibold tracking-wider">COMMON QUESTIONS</span>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <div className="inline-block px-3 sm:px-4 py-1 bg-gradient-to-r from-rose-100 via-amber-100 to-rose-100 rounded-full mb-3 sm:mb-4">
+              <span className="text-rose-800 text-xs sm:text-sm font-bold tracking-wider">COMMON QUESTIONS</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-rose-700 via-red-800 to-amber-700 bg-clip-text text-transparent mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-rose-700 via-red-800 to-amber-700 bg-clip-text text-transparent mb-3 sm:mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg sm:text-xl font-light">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto font-light px-4 sm:px-8">
               Find answers to the most commonly asked questions
             </p>
           </div>
           
-          <div className="space-y-5">
+          <div className="space-y-4 sm:space-y-5">
             {faqs?.map((faq: any, index: number) => (
               <details 
                 key={faq._id} 
-                className="group bg-white hover:bg-gradient-to-r hover:from-white hover:to-rose-50/30 p-6 rounded-2xl cursor-pointer shadow-md hover:shadow-xl transition-all duration-300 border border-rose-100/50 hover:border-rose-200"
+                className="group bg-white hover:bg-gradient-to-r hover:from-white hover:to-rose-50/30 p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl cursor-pointer shadow-md hover:shadow-xl transition-all duration-300 border border-rose-100/50 hover:border-rose-200"
                 style={{animationDelay: `${index * 0.05}s`}}
               >
-                <summary className="flex justify-between items-center font-semibold text-lg text-gray-900 list-none">
-                  <span className="pr-4">{faq.question}</span>
-                  <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-gradient-to-br from-rose-100 to-red-100 rounded-full transition-transform duration-300 group-open:rotate-180 group-open:bg-gradient-to-br group-open:from-rose-500 group-open:to-red-600">
-                    <FaChevronDown className="text-rose-600 group-open:text-white transition-colors" />
+                <summary className="flex justify-between items-center font-semibold text-base sm:text-lg text-gray-900 list-none">
+                  <span className="pr-3 sm:pr-4">{faq.question}</span>
+                  <span className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-gradient-to-br from-rose-100 to-red-100 rounded-full transition-transform duration-300 group-open:rotate-180 group-open:bg-gradient-to-br group-open:from-rose-500 group-open:to-red-600">
+                    <FaChevronDown className="text-rose-600 group-open:text-white transition-colors text-sm sm:text-base" />
                   </span>
                 </summary>
-                <div className="mt-4 pt-4 border-t border-rose-100">
-                  <p className="text-base sm:text-lg text-gray-600 leading-relaxed font-light">{faq.answer}</p>
+                <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-rose-100">
+                  <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed font-light">{faq.answer}</p>
                 </div>
               </details>
             ))}
           </div>
           
           {/* Learn More Button */}
-          <div className="mt-12 text-center">
-            {company.brochurePdf?.url ? (
-              <a 
-                href={company.brochurePdf.url} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                download
-                className="inline-flex items-center gap-3 px-8 lg:px-10 py-3.5 lg:py-4 bg-gradient-to-r from-rose-600 via-red-600 to-amber-600 hover:from-rose-500 hover:via-red-500 hover:to-amber-500 text-white text-base font-bold rounded-full shadow-2xl hover:shadow-rose-500/50 transition-all duration-300 transform hover:scale-105"
-              >
-                <span>Learn More</span>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </a>
-            ) : (
-              <Link 
-                href="#services"
-                className="inline-flex items-center gap-3 px-8 lg:px-10 py-3.5 lg:py-4 bg-gradient-to-r from-rose-600 via-red-600 to-amber-600 hover:from-rose-500 hover:via-red-500 hover:to-amber-500 text-white text-base font-bold rounded-full shadow-2xl hover:shadow-rose-500/50 transition-all duration-300 transform hover:scale-105"
-              >
-                <span>Learn More</span>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-            )}
+          <div className="mt-8 sm:mt-10 lg:mt-12 text-center">
+            <Link 
+              href="/learn-more"
+              className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-4 bg-gradient-to-r from-rose-600 via-red-600 to-amber-600 hover:from-rose-500 hover:via-red-500 hover:to-amber-500 text-white text-sm sm:text-base font-bold rounded-full shadow-2xl hover:shadow-rose-500/50 transition-all duration-300 transform hover:scale-105"
+            >
+              <span>Learn More</span>
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>
@@ -493,7 +466,7 @@ export default async function Home() {
         <div className="absolute top-0 left-0 w-96 h-96 bg-rose-600/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl"></div>
         
-        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-16 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 relative z-10">
           
           {/* Info Column */}
           <div className="space-y-8 animate-slide-in-left">

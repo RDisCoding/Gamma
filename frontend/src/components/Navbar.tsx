@@ -176,21 +176,11 @@ export default function Navbar() {
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo Section */}
-          <div className="shrink-0 font-bold text-base sm:text-xl lg:text-2xl tracking-wide">
-            <Link href="/" className="flex items-center gap-1.5 sm:gap-2 group">
-              <span className="bg-gradient-to-br from-yellow-400 to-orange-400 p-1.5 sm:p-2 rounded-lg sm:rounded-xl group-hover:from-yellow-300 group-hover:to-orange-300 transition-all duration-300 shadow-lg">
-                <span className="text-orange-900 text-xl sm:text-2xl lg:text-3xl">🕉</span>
-              </span>
-              <span className="group-hover:text-yellow-300 transition-colors">Pandit Services</span>
-            </Link>
-          </div>
-
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-center h-16 sm:h-20">
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-2">
-            <div className="flex items-baseline space-x-1 lg:space-x-2">
+            <div className="flex items-baseline space-x-6 lg:space-x-12">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
@@ -239,7 +229,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="-mr-2 flex md:hidden">
+          <div className="flex md:hidden absolute right-3">
             <button
               onClick={toggleMenu}
               type="button"

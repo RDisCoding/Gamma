@@ -4,7 +4,7 @@ import ScrollToTop from '../components/ScrollToTop';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Pandit Services',
+  title: 'TirthGaya Services',
   description: 'Professional Pandit Services for all your spiritual needs.',
 };
 
