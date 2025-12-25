@@ -9,6 +9,15 @@ export default defineType({
     defineField({ name: 'heroTitle', title: 'Hero Title', type: 'string' }),
     defineField({ name: 'heroSubtitle', title: 'Hero Subtitle', type: 'text', rows: 2 }),
     defineField({ name: 'heroImage', title: 'Hero Image', type: 'image', options: { hotspot: true } }),
+    defineField({ 
+      name: 'brochurePdf', 
+      title: 'Brochure PDF', 
+      type: 'file',
+      description: 'Upload a PDF brochure that will be opened when users click "Learn More" on the home page',
+      options: {
+        accept: '.pdf'
+      }
+    }),
 
     // --- About Section ---
     defineField({ name: 'aboutTitle', title: 'About Us Title', type: 'string' }),

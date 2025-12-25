@@ -26,8 +26,7 @@ export default async function ServicesPage() {
             Our Services
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-light px-2">
-            Discover our complete range of traditional Hindu ceremonies and spiritual services
-            performed with devotion and authenticity.
+            With expertise in Vedic rituals and Jyotish Shaastra, we perform authentic poojas, havans, sanskar karmas, and shraadhs to ensure spiritual harmony, ancestral peace, and divine blessings.
           </p>
         </div>
       </section>

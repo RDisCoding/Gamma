@@ -10,7 +10,10 @@ import LocationMap from '../components/LocationMap';
 // Fetch ALL data
 const getData = async () => {
   const query = groq`{
-    "company": *[_type == "companyInfo"][0],
+    "company": *[_type == "companyInfo"][0]{
+      ...,
+      "brochurePdf": brochurePdf.asset->
+    },
     "services": *[_type == "service"] | order(order asc),
     "reviews": *[_type == "review"],
     "gallery": *[_type == "gallery"][0]{images[]},
@@ -25,6 +28,9 @@ export default async function Home() {
   const { company, services, reviews, gallery, videos, faqs } = await getData();
 
   if (!company) return <div className="text-center mt-20">Loading Data...</div>;
+
+  // Debug: Log the PDF data
+  console.log('Company brochure PDF:', company.brochurePdf);
 
   return (
     <div className="flex flex-col w-full">
@@ -70,9 +76,21 @@ export default async function Home() {
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </span>
             </Link>
-            <Link href="#services" className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-4 bg-white/15 backdrop-blur-md hover:bg-amber-50/20 text-white text-sm sm:text-base font-bold rounded-full border-2 border-amber-200/40 hover:border-amber-300/60 shadow-lg transform hover:scale-105 transition-all duration-300">
-              Explore Services
-            </Link>
+            {company.brochurePdf?.url ? (
+              <a 
+                href={company.brochurePdf.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                download
+                className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-4 bg-white/15 backdrop-blur-md hover:bg-amber-50/20 text-white text-sm sm:text-base font-bold rounded-full border-2 border-amber-200/40 hover:border-amber-300/60 shadow-lg transform hover:scale-105 transition-all duration-300"
+              >
+                Learn More
+              </a>
+            ) : (
+              <Link href="#services" className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-4 bg-white/15 backdrop-blur-md hover:bg-amber-50/20 text-white text-sm sm:text-base font-bold rounded-full border-2 border-amber-200/40 hover:border-amber-300/60 shadow-lg transform hover:scale-105 transition-all duration-300">
+                Learn More
+              </Link>
+            )}
           </div>
         </div>
       </section>
@@ -435,6 +453,34 @@ export default async function Home() {
               </details>
             ))}
           </div>
+          
+          {/* Learn More Button */}
+          <div className="mt-12 text-center">
+            {company.brochurePdf?.url ? (
+              <a 
+                href={company.brochurePdf.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                download
+                className="inline-flex items-center gap-3 px-8 lg:px-10 py-3.5 lg:py-4 bg-gradient-to-r from-rose-600 via-red-600 to-amber-600 hover:from-rose-500 hover:via-red-500 hover:to-amber-500 text-white text-base font-bold rounded-full shadow-2xl hover:shadow-rose-500/50 transition-all duration-300 transform hover:scale-105"
+              >
+                <span>Learn More</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </a>
+            ) : (
+              <Link 
+                href="#services"
+                className="inline-flex items-center gap-3 px-8 lg:px-10 py-3.5 lg:py-4 bg-gradient-to-r from-rose-600 via-red-600 to-amber-600 hover:from-rose-500 hover:via-red-500 hover:to-amber-500 text-white text-base font-bold rounded-full shadow-2xl hover:shadow-rose-500/50 transition-all duration-300 transform hover:scale-105"
+              >
+                <span>Learn More</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            )}
+          </div>
         </div>
       </section>
 
@@ -572,7 +618,12 @@ export default async function Home() {
           <div className="space-y-8 animate-slide-in-right">
             <div className="bg-gradient-to-br from-white to-orange-50 text-gray-900 p-8 rounded-3xl shadow-2xl border border-orange-100">
               <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-orange-700 to-red-700 bg-clip-text text-transparent">Send an Inquiry</h3>
-              <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" className="space-y-5">
+              <form action="https://formsubmit.co/egocentricboss@gmail.com" method="POST" className="space-y-5">
+                {/* FormSubmit Configuration */}
+                <input type="hidden" name="_subject" value="New inquiry from Sidhpur Website" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="text" name="_honey" style={{display: 'none'}} />
+                
                 <div className="grid grid-cols-2 gap-4">
                   <input 
                     name="name" 
@@ -595,6 +646,7 @@ export default async function Home() {
                   placeholder="Tell us about your requirement..." 
                   required
                 ></textarea>
+                
                 <button 
                   type="submit" 
                   className="w-full bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 text-white font-bold py-4 rounded-xl hover:shadow-2xl hover:shadow-orange-500/50 transition-all duration-300 transform hover:scale-105"

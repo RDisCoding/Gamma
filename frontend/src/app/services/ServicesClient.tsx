@@ -120,12 +120,12 @@ export default function ServicesClient({ initialServices }: ServicesClientProps)
                 >
                   {/* Image Section - Reduced to 60% */}
                   {service.icon && (
-                    <div className="relative w-full aspect-[5/2] bg-gradient-to-br from-orange-50 to-amber-50 flex-shrink-0 p-6">
+                    <div className="relative w-full aspect-[3/2] bg-gradient-to-br from-orange-50 to-amber-50 flex-shrink-0">
                       <Image
                         src={urlFor(service.icon).url()}
                         alt={service.title}
                         fill
-                        className="object-contain group-hover:scale-105 transition-transform duration-500"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
                     </div>
