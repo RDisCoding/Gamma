@@ -39,14 +39,14 @@ export default async function Home() {
       {/* --- HERO --- */}
       <section id="home" className="relative min-h-[85vh] sm:h-[90vh] flex items-center justify-center text-center text-white px-4 sm:px-8 lg:px-12 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-rose-950/60 via-red-950/50 to-amber-950/60 z-10"></div>
+          <div className="absolute inset-0 z-10"></div>
           
           {/* Image Background - Replace with Video if desired */}
-          {company.heroImage && (
+          {/* {company.heroImage && (
             <Image src={urlFor(company.heroImage).url()} alt="Hero" fill className="object-cover" priority />
-          )}
+          )} */}
           
-          {/* VIDEO BACKGROUND OPTION - Uncomment to use video instead of image
+          {/* VIDEO BACKGROUND OPTION - Uncomment to use video instead of image */}
           <video
             autoPlay
             loop
@@ -56,19 +56,19 @@ export default async function Home() {
           >
             <source src="/videos/hero-background.mp4" type="video/mp4" />
           </video>
-          */}
+         
           
           {/* Animated gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/10 to-transparent z-20 animate-shimmer bg-[length:200%_100%]"></div>
         </div>
         <div className="relative z-30 max-w-5xl mx-auto space-y-4 sm:space-y-6 lg:space-y-8 animate-fade-in-up px-4 sm:px-8">
-          <div className="inline-block px-4 sm:px-6 py-1.5 sm:py-2 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 backdrop-blur-md rounded-full border border-amber-400/40 mb-2">
-            <span className="text-amber-200 text-xs sm:text-sm font-bold tracking-wider">✨ TRADITIONAL VEDIC SERVICES</span>
+          <div className="inline-block px-4 sm:px-6 py-2 sm:py-2.5 bg-white/90 backdrop-blur-md rounded-full border-2 border-rose-600/60 shadow-lg shadow-rose-500/30 mb-2">
+            <span className="text-sm sm:text-base font-extrabold tracking-wider bg-gradient-to-r from-rose-700 via-red-700 to-rose-700 bg-clip-text text-transparent">✨ Har Har Mahadev ✨</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold drop-shadow-2xl leading-tight">
-            <span className="block bg-gradient-to-r from-white via-amber-100 to-white bg-clip-text text-transparent">{company.heroTitle}</span>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold drop-shadow-lg leading-tight">
+            <span className="block bg-gradient-to-r from-rose-800 via-red-900 to-rose-800 bg-clip-text text-transparent">{company.heroTitle}</span>
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-amber-50 max-w-3xl mx-auto drop-shadow-lg leading-relaxed font-light px-4 sm:px-6">{company.heroSubtitle}</p>
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-800 max-w-3xl mx-auto drop-shadow-md leading-relaxed font-medium px-4 sm:px-6">{company.heroSubtitle}</p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-4 sm:pt-6 px-6 sm:px-0">
             <Link href="#contact" className="group inline-block w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-4 bg-gradient-to-r from-amber-600 via-rose-600 to-red-600 hover:from-amber-500 hover:via-rose-500 hover:to-red-500 text-white text-sm sm:text-base font-bold rounded-full shadow-2xl shadow-rose-900/50 transform hover:scale-105 transition-all duration-300 animate-glow">
               <span className="flex items-center justify-center gap-2">
@@ -76,9 +76,46 @@ export default async function Home() {
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </span>
             </Link>
-            <Link href="/learn-more" className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-4 bg-white/15 backdrop-blur-md hover:bg-amber-50/20 text-white text-sm sm:text-base font-bold rounded-full border-2 border-amber-200/40 hover:border-amber-300/60 shadow-lg transform hover:scale-105 transition-all duration-300">
+            <Link href="/learn-more" className="w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-3.5 lg:py-4 bg-white hover:bg-amber-50 text-rose-700 text-sm sm:text-base font-bold rounded-full border-2 border-amber-600/60 hover:border-amber-700 shadow-lg transform hover:scale-105 transition-all duration-300">
               Learn More
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* --- CONTACT BANNER --- */}
+      <section className="bg-gradient-to-r from-rose-600 via-red-600 to-amber-600 py-6 sm:py-8 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer bg-[length:200%_100%]"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+            <div className="text-center sm:text-left flex-1">
+              <h3 className="text-white font-bold text-xl sm:text-2xl lg:text-3xl mb-2 drop-shadow-lg">
+                Have Questions? Need Assistance? 
+              </h3>
+              <p className="text-amber-50 text-sm sm:text-base lg:text-lg font-light">
+                Connect with us instantly via WhatsApp or Call for personal guidance
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+              <a 
+                href={`https://wa.me/${company.whatsappNumber?.replace(/[^0-9]/g, '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full shadow-2xl shadow-green-900/50 transform hover:scale-105 transition-all duration-300"
+              >
+                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                <span className="text-sm sm:text-base">WhatsApp Us</span>
+              </a>
+              <a 
+                href={`tel:${company.phoneNumber}`}
+                className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-white hover:bg-amber-50 text-rose-700 font-bold rounded-full shadow-2xl shadow-white/30 transform hover:scale-105 transition-all duration-300"
+              >
+                <FaPhone className="text-base sm:text-lg" />
+                <span className="text-sm sm:text-base">Call Now</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -109,11 +146,11 @@ export default async function Home() {
             <p className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed whitespace-pre-line font-light">{company.aboutText}</p>
             <div className="grid grid-cols-2 gap-4 sm:gap-6 pt-2 sm:pt-4">
               <div className="bg-gradient-to-br from-white to-rose-50/30 p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg border border-rose-100 hover:shadow-xl hover:border-rose-200 transition-all duration-300">
-                <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-rose-600 to-red-700 bg-clip-text text-transparent mb-1 sm:mb-2">20+</div>
+                <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-rose-600 to-red-700 bg-clip-text text-transparent mb-1 sm:mb-2">40+</div>
                 <div className="text-sm sm:text-base text-gray-600 font-medium">Years Experience</div>
               </div>
               <div className="bg-gradient-to-br from-white to-amber-50/30 p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg border border-amber-100 hover:shadow-xl hover:border-amber-200 transition-all duration-300">
-                <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-amber-600 to-rose-700 bg-clip-text text-transparent mb-1 sm:mb-2">1000+</div>
+                <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-amber-600 to-rose-700 bg-clip-text text-transparent mb-1 sm:mb-2">100000+</div>
                 <div className="text-sm sm:text-base text-gray-600 font-medium">Happy Devotees</div>
               </div>
             </div>
@@ -390,7 +427,7 @@ export default async function Home() {
                   {/* Quote mark */}
                   <div className="text-4xl sm:text-5xl lg:text-6xl text-rose-200/60 font-serif leading-none mb-3 sm:mb-4">&ldquo;</div>
                   
-                  <p className="text-base sm:text-lg text-gray-700 italic mb-4 sm:mb-6 leading-relaxed font-light relative z-10 flex-grow line-clamp-6">
+                  <p className="text-base sm:text-lg text-gray-700 italic mb-4 sm:mb-6 leading-relaxed font-light relative z-10 flex-grow">
                     {review.reviewText}
                   </p>
                   

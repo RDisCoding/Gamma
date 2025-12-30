@@ -50,15 +50,19 @@ export default function Navbar() {
   const languages = [
     { code: 'en', name: 'English', display: 'English' },
     { code: 'hi', name: 'हिन्दी (Hindi)', display: 'हिन्दी' },
+    { code: 'as', name: 'অসমীয়া (Assamese)', display: 'অসমীয়া' },
+    { code: 'bn', name: 'বাংলা (Bengali)', display: 'বাংলা' },
     { code: 'gu', name: 'ગુજરાતી (Gujarati)', display: 'ગુજરાતી' },
+    { code: 'kn', name: 'ಕನ್ನಡ (Kannada)', display: 'ಕನ್ನಡ' },
+    { code: 'ml', name: 'മലയാളം (Malayalam)', display: 'മലയാളം' },
     { code: 'mr', name: 'मराठी (Marathi)', display: 'मराठी' },
+    { code: 'ne', name: 'नेपाली (Nepali)', display: 'नेपाली' },
+    { code: 'or', name: 'ଓଡ଼ିଆ (Odia)', display: 'ଓଡ଼ିଆ' },
+    { code: 'pa', name: 'ਪੰਜਾਬੀ (Punjabi)', display: 'ਪੰਜਾਬੀ' },
+    { code: 'sa', name: 'संस्कृतम् (Sanskrit)', display: 'संस्कृतम्' },
+    { code: 'sd', name: 'سنڌي (Sindhi)', display: 'سنڌي' },
     { code: 'ta', name: 'தமிழ் (Tamil)', display: 'தமிழ்' },
     { code: 'te', name: 'తెలుగు (Telugu)', display: 'తెలుగు' },
-    { code: 'kn', name: 'ಕನ್ನಡ (Kannada)', display: 'ಕನ್ನಡ' },
-    { code: 'bn', name: 'বাংলা (Bengali)', display: 'বাংলা' },
-    { code: 'pa', name: 'ਪੰਜਾਬੀ (Punjabi)', display: 'ਪੰਜਾਬੀ' },
-    { code: 'ml', name: 'മലയാളം (Malayalam)', display: 'മലയാളം' },
-    { code: 'or', name: 'ଓଡ଼ିଆ (Odia)', display: 'ଓଡ଼ିଆ' },
     { code: 'ur', name: 'اردو (Urdu)', display: 'اردو' },
   ];
 
@@ -106,7 +110,7 @@ export default function Navbar() {
           new window.google.translate.TranslateElement(
             {
               pageLanguage: 'en',
-              includedLanguages: 'en,hi,gu,mr,ta,te,kn,bn,pa,ml,or,ur',
+              includedLanguages: 'en,hi,as,bn,gu,kn,ml,mr,ne,or,pa,sa,sd,ta,te,ur',
               autoDisplay: false,
             },
             'google_translate_element_hidden'
