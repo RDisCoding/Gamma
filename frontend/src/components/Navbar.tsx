@@ -6,6 +6,7 @@ import { HiMenu, HiX, HiGlobe } from 'react-icons/hi'; // Icons for mobile menu
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showLangMenu, setShowLangMenu] = useState(false);
@@ -23,6 +24,7 @@ export default function Navbar() {
       else if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
         setIsOpen(false); // Close mobile menu when hiding
+        setIsLangMenuOpen(false); // Close language menu when hiding
         setShowLangMenu(false); // Close language menu when hiding
       }
       
@@ -163,6 +165,16 @@ export default function Navbar() {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+    if (!isOpen) {
+      setIsLangMenuOpen(false); // Close language menu when opening nav menu
+    }
+  };
+
+  const toggleLangMenu = () => {
+    setIsLangMenuOpen(!isLangMenuOpen);
+    if (!isLangMenuOpen) {
+      setIsOpen(false); // Close nav menu when opening language menu
+    }
   };
 
   const navLinks = [
@@ -232,8 +244,23 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden absolute right-3">
+          {/* Mobile Menu Buttons */}
+          <div className="flex md:hidden w-full justify-between px-3">
+            {/* Language Menu Button - Left */}
+            <button
+              onClick={toggleLangMenu}
+              type="button"
+              className="bg-white/20 backdrop-blur-sm inline-flex items-center justify-center p-3 rounded-xl hover:bg-white/30 focus:outline-none transition-all duration-300"
+            >
+              <span className="sr-only">Open language menu</span>
+              {isLangMenuOpen ? (
+                <HiX className="block h-7 w-7 transition-transform duration-300 rotate-90" aria-hidden="true" />
+              ) : (
+                <span className="text-2xl">🌐</span>
+              )}
+            </button>
+            
+            {/* Navigation Menu Button - Right */}
             <button
               onClick={toggleMenu}
               type="button"
@@ -250,7 +277,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu (Dropdown) */}
+      {/* Mobile Navigation Menu */}
       {isOpen && (
         <div className="md:hidden bg-gradient-to-br from-orange-800 to-red-800 backdrop-blur-lg border-t border-white/20 animate-fade-in shadow-2xl">
           <div className="px-3 pt-2 pb-4 space-y-2">
@@ -264,23 +291,29 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
-            {/* Language Selector - Mobile */}
-            <div className="notranslate border-t border-white/20 pt-2 mt-2 language-dropdown">
-              <div className="px-4 py-2 text-sm font-semibold text-yellow-200 flex items-center gap-2">
-                <span>Select Language</span>
-              </div>
-              <div className="px-2 pb-2 space-y-1">
-                {languages.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => { changeLanguage(lang.code, lang.display); setIsOpen(false); }}
-                    className="w-full text-left px-3 py-2.5 rounded-lg hover:bg-white/20 transition-colors duration-200 text-white font-medium text-sm flex items-center gap-2"
-                  >
-                    <span className="text-base flex-shrink-0">{lang.code === 'en' ? '🇬🇧' : '🇮🇳'}</span>
-                    <span className="whitespace-nowrap">{lang.name}</span>
-                  </button>
-                ))}
-              </div>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Language Menu */}
+      {isLangMenuOpen && (
+        <div className="md:hidden bg-gradient-to-br from-orange-800 to-red-800 backdrop-blur-lg border-t border-white/20 animate-fade-in shadow-2xl">
+          <div className="notranslate px-3 pt-2 pb-4 language-dropdown">
+            <div className="px-4 py-2 text-sm font-semibold text-yellow-200 flex items-center gap-2">
+              <span className="text-lg">🌐</span>
+              <span>Select Language</span>
+            </div>
+            <div className="grid grid-cols-2 gap-2 px-2">
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={() => { changeLanguage(lang.code, lang.display); setIsLangMenuOpen(false); }}
+                  className="text-left px-3 py-2 rounded-lg hover:bg-white/20 transition-colors duration-200 text-white font-medium text-sm flex items-center gap-2"
+                >
+                  <span className="text-base flex-shrink-0">{lang.code === 'en' ? '🇬🇧' : '🇮🇳'}</span>
+                  <span className="whitespace-nowrap text-xs">{lang.name}</span>
+                </button>
+              ))}
             </div>
           </div>
         </div>
