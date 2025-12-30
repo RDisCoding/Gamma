@@ -3,10 +3,7 @@ import { client } from '../../sanity/client';
 import LearnMoreClient from './LearnMoreClient';
 
 async function getLearnMoreData() {
-  const query = groq`*[_type == "learnMore"][0]{
-    ...,
-    "downloadPdf": downloadPdf.asset->
-  }`;
+  const query = groq`*[_type == "learnMore"][0]`;
   return client.fetch(query, {}, { next: { revalidate: 60 } });
 }
 

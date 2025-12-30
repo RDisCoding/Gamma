@@ -8,10 +8,6 @@ interface LearnMoreData {
   title: string;
   subtitle: string;
   content: string;
-  downloadPdf?: {
-    url: string;
-    originalFilename?: string;
-  };
 }
 
 interface CompanyInfo {
@@ -223,24 +219,6 @@ export default function LearnMoreClient({ data, company }: LearnMoreClientProps)
               <p className="text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed px-2 text-gray-700 mb-8">
                 {data.subtitle}
               </p>
-            )}
-            
-            {/* Download PDF Button */}
-            {data.downloadPdf?.url && (
-              <div className="mt-8">
-                <a 
-                  href={data.downloadPdf.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download
-                  className="inline-flex items-center gap-3 px-8 lg:px-10 py-4 bg-gradient-to-r from-rose-600 via-red-600 to-amber-600 hover:from-rose-500 hover:via-red-500 hover:to-amber-500 text-white text-base font-bold rounded-full shadow-2xl hover:shadow-rose-500/50 transition-all duration-300 transform hover:scale-105"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  <span>Download PDF</span>
-                </a>
-              </div>
             )}
           </div>
         </div>

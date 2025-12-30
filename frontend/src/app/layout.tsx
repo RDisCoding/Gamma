@@ -5,7 +5,7 @@ import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'TirthGaya Services',
+  title: 'Matrugaya Tirth',
   description: 'Professional Pandit Services for all your spiritual needs.',
 };
 
