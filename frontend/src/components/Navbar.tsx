@@ -247,18 +247,17 @@ export default function Navbar() {
           {/* Mobile Menu Buttons */}
           <div className="flex md:hidden w-full justify-between px-3">
             {/* Language Menu Button - Left */}
-            <button
-              onClick={toggleLangMenu}
-              type="button"
-              className="bg-white/20 backdrop-blur-sm inline-flex items-center justify-center p-3 rounded-xl hover:bg-white/30 focus:outline-none transition-all duration-300"
-            >
-              <span className="sr-only">Open language menu</span>
-              {isLangMenuOpen ? (
-                <HiX className="block h-7 w-7 transition-transform duration-300 rotate-90" aria-hidden="true" />
-              ) : (
-                <span className="text-2xl">🌐</span>
-              )}
-            </button>
+        <button
+          onClick={toggleLangMenu}
+          className="md:hidden px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-300 focus:outline-none active:scale-95 border border-white/30"
+          aria-label="Open language menu"
+        >
+          {isLangMenuOpen ? (
+            <HiX className="h-6 w-6" />
+          ) : (
+            <span className="text-sm font-semibold whitespace-nowrap">Select Language</span>
+          )}
+        </button>
             
             {/* Navigation Menu Button - Right */}
             <button

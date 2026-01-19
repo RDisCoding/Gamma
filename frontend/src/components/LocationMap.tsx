@@ -28,7 +28,7 @@ export default function LocationMap() {
           {/* Google Map Embed */}
           <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px]">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7294.848192562013!2d72.36740350000001!3d23.9100321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395cf528e5889273%3A0x781825b012da2bb7!2sMatrugaya%20Pandit%20Bindu%20Sarovar%20Sidhpur!5e0!3m2!1sen!2sin!4v1764998176237!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d911.8642897991572!2d72.3635266!3d23.9088606!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395cf50347f8ce4f%3A0xdc657c39b8155d03!2sBindu%20sarover%20%2C%20Matrugaya%20Tirth%20%2CSiddhpur!5e0!3m2!1sen!2sin!4v1768802953480!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ border: 0 }}

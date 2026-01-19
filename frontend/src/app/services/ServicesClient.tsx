@@ -307,7 +307,7 @@ export default function ServicesClient({ initialServices, company }: ServicesCli
           <div className="space-y-8 animate-slide-in-right">
             <div className="bg-gradient-to-br from-white to-orange-50 text-gray-900 p-8 rounded-3xl shadow-2xl border border-orange-100">
               <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-orange-700 to-red-700 bg-clip-text text-transparent">Send an Inquiry</h3>
-              <form action="https://formsubmit.co/egocentricboss@gmail.com" method="POST" className="space-y-5">
+              <form action="https://formsubmit.co/matrugayatirthboss@gmail.com" method="POST" className="space-y-5">
                 {/* FormSubmit Configuration */}
                 <input type="hidden" name="_subject" value="New inquiry from Sidhpur Website" />
                 <input type="hidden" name="_captcha" value="false" />
