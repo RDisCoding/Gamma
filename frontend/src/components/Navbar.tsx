@@ -100,23 +100,40 @@ export default function Navbar() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const timeout = setTimeout(() => {
-        // @ts-ignore
-        if (window.google?.translate && !document.querySelector('.goog-te-combo')) {
+        const translateElementCtor = (window as typeof window & {
+          google?: {
+            translate?: {
+              TranslateElement?: new (
+                options: {
+                  pageLanguage: string;
+                  includedLanguages: string;
+                  autoDisplay: boolean;
+                },
+                elementId: string
+              ) => unknown;
+            };
+          };
+        }).google?.translate?.TranslateElement;
+
+        if (typeof translateElementCtor === 'function' && !document.querySelector('.goog-te-combo')) {
           // Create a hidden container for Google Translate
           const hiddenDiv = document.createElement('div');
           hiddenDiv.id = 'google_translate_element_hidden';
           hiddenDiv.style.display = 'none';
           document.body.appendChild(hiddenDiv);
           
-          // @ts-ignore
-          new window.google.translate.TranslateElement(
-            {
-              pageLanguage: 'en',
-              includedLanguages: 'en,hi,as,bn,gu,kn,ml,mr,ne,or,pa,sa,sd,ta,te,ur',
-              autoDisplay: false,
-            },
-            'google_translate_element_hidden'
-          );
+          try {
+            new translateElementCtor(
+              {
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi,as,bn,gu,kn,ml,mr,ne,or,pa,sa,sd,ta,te,ur',
+                autoDisplay: false,
+              },
+              'google_translate_element_hidden'
+            );
+          } catch {
+            hiddenDiv.remove();
+          }
         }
       }, 500);
       

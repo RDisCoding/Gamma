@@ -27,7 +27,31 @@ const getData = async () => {
 export default async function Home() {
   const { company, services, reviews, gallery, videos, faqs } = await getData();
 
-  if (!company) return <div className="text-center mt-20">Loading Data...</div>;
+  if (!company) {
+    return (
+      <main className="min-h-screen pt-28 px-6 sm:px-10 bg-gradient-to-br from-rose-50 via-white to-amber-50">
+        <section className="max-w-3xl mx-auto text-center rounded-2xl border border-rose-200 bg-white/80 shadow-xl p-8 sm:p-12">
+          <h1 className="text-2xl sm:text-3xl font-bold text-rose-800 mb-4">Website Content Not Published Yet</h1>
+          <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+            Your frontend is live, but the required content document (<span className="font-semibold">companyInfo</span>) is missing in Sanity.
+            Add and publish content in your deployed Studio to make the homepage render fully.
+          </p>
+          <div className="mt-6 text-sm sm:text-base text-gray-600">
+            Open your Studio at{' '}
+            <a
+              href="https://sidhpur.sanity.studio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-rose-700 hover:text-rose-800 underline"
+            >
+              sidhpur.sanity.studio
+            </a>
+            , create <span className="font-semibold">Company Information</span>, then publish it.
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   // Debug: Log the PDF data
   console.log('Company brochure PDF:', company.brochurePdf);
