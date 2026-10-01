@@ -10,6 +10,7 @@ interface Props {
 
 export default function FloatingActions({ phone, whatsapp }: Props) {
   const [showTopBtn, setShowTopBtn] = useState(false);
+  const whatsappUrl = whatsapp ? `https://wa.me/${whatsapp.replace(/[^0-9]/g, '')}` : '';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +44,7 @@ export default function FloatingActions({ phone, whatsapp }: Props) {
       {/* WhatsApp */}
       {whatsapp && (
         <a
-          href={`https://wa.me/${whatsapp}`}
+          href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="group relative bg-gradient-to-br from-green-500 to-green-600 text-white p-4 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 animate-float"

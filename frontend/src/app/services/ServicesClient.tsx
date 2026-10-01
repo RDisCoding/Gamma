@@ -4,10 +4,9 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaSearch, FaTimes, FaPhone, FaEnvelope, FaClock, FaMapMarkerAlt, FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaYoutube } from 'react-icons/fa';
-import { urlFor } from '../../sanity/imageUrl';
 
 interface Service {
-  _id: string;
+  id: string;
   title: string;
   description: string;
   icon?: any;
@@ -129,7 +128,7 @@ export default function ServicesClient({ initialServices, company }: ServicesCli
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-6 lg:gap-8 px-2 sm:px-0">
               {filteredServices.map((service: Service, index: number) => (
                 <div
-                  key={service._id}
+                  key={service.id}
                   className="group bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-orange-100/50 card-hover overflow-hidden animate-fade-in flex flex-col"
                   style={{ animationDelay: `${(index % 12) * 0.05}s` }}
                 >
@@ -137,7 +136,7 @@ export default function ServicesClient({ initialServices, company }: ServicesCli
                   {service.icon && (
                     <div className="relative w-full aspect-[3/2] bg-gradient-to-br from-orange-50 to-amber-50 flex-shrink-0">
                       <Image
-                        src={urlFor(service.icon).url()}
+                        src={service.icon}
                         alt={service.title}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"

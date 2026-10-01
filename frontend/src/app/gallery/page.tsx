@@ -1,27 +1,10 @@
-import groq from 'groq';
 import Link from 'next/link';
-import { client } from '../../sanity/client';
 import GalleryClient from './GalleryClient';
+import { company } from '../../content/company';
+import { gallery } from '../../content/gallery';
+import { videos } from '../../content/videos';
 
-async function getGalleryData() {
-  const query = groq`{
-    "gallery": *[_type == "gallery"][0]{images[]},
-    "videos": *[_type == "videos"][0]{videos[]}
-  }`;
-  return client.fetch(query, {}, { next: { revalidate: 60 } });
-}
-
-async function getCompanyInfo() {
-  const query = groq`*[_type == "companyInfo"][0]`;
-  return client.fetch(query, {}, { next: { revalidate: 60 } });
-}
-
-export default async function GalleryPage() {
-  const [{ gallery, videos }, company] = await Promise.all([
-    getGalleryData(),
-    getCompanyInfo()
-  ]);
-
+export default function GalleryPage() {
   return (
     <main className="min-h-screen bg-gradient-to-r from-rose-100 via-amber-50 to-rose-100">
       {/* Hero Section */}

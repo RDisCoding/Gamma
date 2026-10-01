@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { FaPhone, FaEnvelope, FaClock, FaMapMarkerAlt, FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaYoutube } from 'react-icons/fa';
-import { urlFor } from '../../sanity/imageUrl';
 
 interface GalleryImage {
   image: any;
@@ -133,7 +132,7 @@ export default function GalleryClient({ gallery, videos, company }: GalleryClien
                     <div className="relative w-full h-full rounded-3xl overflow-hidden border-4 border-white shadow-2xl">
                       {item.image && (
                         <Image
-                          src={urlFor(item.image).url()}
+                          src={item.image}
                           alt={item.caption || 'Gallery Image'}
                           fill
                           className="object-cover group-hover:scale-110 group-hover:rotate-2 transition-all duration-700"

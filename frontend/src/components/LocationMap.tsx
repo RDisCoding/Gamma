@@ -1,5 +1,7 @@
 'use client';
 
+import { company } from '../content/company';
+
 export default function LocationMap() {
   return (
     <section className="py-16 sm:py-20 lg:py-24 bg-white relative overflow-hidden">
@@ -28,14 +30,14 @@ export default function LocationMap() {
           {/* Google Map Embed */}
           <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px]">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d911.8642897991572!2d72.3635266!3d23.9088606!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395cf50347f8ce4f%3A0xdc657c39b8155d03!2sBindu%20sarover%20%2C%20Matrugaya%20Tirth%20%2CSiddhpur!5e0!3m2!1sen!2sin!4v1768802953480!5m2!1sen!2sin"
+              src={company.googleMapEmbedUrl}
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="24 Carats Mithai Magic Location"
+              title="Ashapuri Mata Location"
               className="w-full h-full"
             ></iframe>
           </div>

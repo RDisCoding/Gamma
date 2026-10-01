@@ -1,61 +1,16 @@
-import { client } from '../sanity/client';
-import { urlFor } from '../sanity/imageUrl';
-import { groq } from 'next-sanity';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaStar, FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock, FaChevronDown, FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaYoutube } from 'react-icons/fa';
 import FloatingActions from '../components/FloatingActions';
 import LocationMap from '../components/LocationMap';
+import { company } from '../content/company';
+import { faqs } from '../content/faqs';
+import { featuredGallery } from '../content/gallery';
+import { reviews } from '../content/reviews';
+import { services } from '../content/services';
+import { videos } from '../content/videos';
 
-// Fetch ALL data
-const getData = async () => {
-  const query = groq`{
-    "company": *[_type == "companyInfo"][0]{
-      ...,
-      "brochurePdf": brochurePdf.asset->
-    },
-    "services": *[_type == "service"] | order(order asc),
-    "reviews": *[_type == "review"],
-    "gallery": *[_type == "gallery"][0]{images[]},
-    "videos": *[_type == "videos"][0]{videos[]},
-    "faqs": *[_type == "faq"] | order(order asc)
-  }`;
-  
-  return client.fetch(query, {}, { next: { revalidate: 60 } });
-};
-
-export default async function Home() {
-  const { company, services, reviews, gallery, videos, faqs } = await getData();
-
-  if (!company) {
-    return (
-      <main className="min-h-screen pt-28 px-6 sm:px-10 bg-gradient-to-br from-rose-50 via-white to-amber-50">
-        <section className="max-w-3xl mx-auto text-center rounded-2xl border border-rose-200 bg-white/80 shadow-xl p-8 sm:p-12">
-          <h1 className="text-2xl sm:text-3xl font-bold text-rose-800 mb-4">Website Content Not Published Yet</h1>
-          <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-            Your frontend is live, but the required content document (<span className="font-semibold">companyInfo</span>) is missing in Sanity.
-            Add and publish content in your deployed Studio to make the homepage render fully.
-          </p>
-          <div className="mt-6 text-sm sm:text-base text-gray-600">
-            Open your Studio at{' '}
-            <a
-              href="https://sidhpur.sanity.studio/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-rose-700 hover:text-rose-800 underline"
-            >
-              sidhpur.sanity.studio
-            </a>
-            , create <span className="font-semibold">Company Information</span>, then publish it.
-          </div>
-        </section>
-      </main>
-    );
-  }
-
-  // Debug: Log the PDF data
-  console.log('Company brochure PDF:', company.brochurePdf);
-
+export default function Home() {
   return (
     <div className="flex flex-col w-full">
       <FloatingActions phone={company.phoneNumber} whatsapp={company.whatsappNumber} />
@@ -66,9 +21,7 @@ export default async function Home() {
           <div className="absolute inset-0 z-10"></div>
           
           {/* Image Background - Replace with Video if desired */}
-          {/* {company.heroImage && (
-            <Image src={urlFor(company.heroImage).url()} alt="Hero" fill className="object-cover" priority />
-          )} */}
+          {/* A local hero image can be added here when one is available. */}
           
           {/* VIDEO BACKGROUND OPTION - Uncomment to use video instead of image */}
           <video
@@ -151,9 +104,9 @@ export default async function Home() {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-200/15 rounded-full blur-3xl"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 grid md:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center relative z-10">
-          <div className="relative h-[500px] w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl group animate-slide-in-left">
+           <div className="relative h-[620px] sm:h-[700px] lg:h-[760px] w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl group animate-slide-in-left">
              {company.aboutImage && (
-                <Image src={urlFor(company.aboutImage).url()} alt="About" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+               <Image src={company.aboutImage} alt="About" fill className="object-cover object-[50%_16%] group-hover:scale-105 transition-transform duration-700" sizes="(max-width: 767px) 100vw, 50vw" />
              )}
              <div className="absolute inset-0 bg-gradient-to-t from-rose-950/40 via-transparent to-transparent"></div>
              {/* Decorative border */}
@@ -203,7 +156,7 @@ export default async function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {services?.slice(0, 6).map((service: any, index: number) => (
               <div 
-                key={service._id} 
+                key={service.id}
                 className="group bg-white rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-rose-100/50 hover:border-rose-200 card-hover overflow-hidden flex flex-col"
                 style={{animationDelay: `${index * 0.1}s`}}
               >
@@ -211,7 +164,7 @@ export default async function Home() {
                 {service.icon && (
                   <div className="relative w-full aspect-[3/2] bg-gradient-to-br from-rose-50 to-amber-50 flex-shrink-0">
                     <Image 
-                      src={urlFor(service.icon).url()} 
+                      src={service.icon}
                       alt={service.title} 
                       fill 
                       className="object-cover group-hover:scale-105 transition-transform duration-500" 
@@ -272,7 +225,7 @@ export default async function Home() {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {gallery?.images?.map((item: any, index: number) => (
+            {featuredGallery.images.map((item: any, index: number) => (
               <div 
                 key={index} 
                 className="relative group overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl aspect-[4/3] card-hover"
@@ -284,7 +237,7 @@ export default async function Home() {
                 <div className="relative w-full h-full rounded-3xl overflow-hidden border-4 border-white shadow-2xl">
                   {item.image && (
                     <Image 
-                      src={urlFor(item.image).url()} 
+                      src={item.image}
                       alt={item.caption || 'Gallery Image'} 
                       fill 
                       className="object-cover group-hover:scale-110 group-hover:rotate-2 transition-all duration-700" 
@@ -425,7 +378,7 @@ export default async function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {reviews?.map((review: any, index: number) => (
               <div 
-                key={review._id} 
+                key={review.id}
                 className="group bg-gradient-to-br from-white to-rose-50/30 p-5 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-rose-100/50 hover:border-rose-200 card-hover relative overflow-hidden flex flex-col"
                 style={{animationDelay: `${index * 0.1}s`}}
               >
@@ -486,7 +439,7 @@ export default async function Home() {
           <div className="space-y-4 sm:space-y-5">
             {faqs?.map((faq: any, index: number) => (
               <details 
-                key={faq._id} 
+                key={faq.id}
                 className="group bg-white hover:bg-gradient-to-r hover:from-white hover:to-rose-50/30 p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl cursor-pointer shadow-md hover:shadow-xl transition-all duration-300 border border-rose-100/50 hover:border-rose-200"
                 style={{animationDelay: `${index * 0.05}s`}}
               >

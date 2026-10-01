@@ -1,30 +1,8 @@
-import groq from 'groq';
-import { client } from '../../sanity/client';
 import ServicesClient from './ServicesClient';
+import { company } from '../../content/company';
+import { services } from '../../content/services';
 
-interface Service {
-  _id: string;
-  title: string;
-  description: string;
-  icon?: any;
-}
-
-async function getServices() {
-  const query = groq`*[_type == "service"] | order(order asc)`;
-  return client.fetch(query, {}, { next: { revalidate: 60 } });
-}
-
-async function getCompanyInfo() {
-  const query = groq`*[_type == "companyInfo"][0]`;
-  return client.fetch(query, {}, { next: { revalidate: 60 } });
-}
-
-export default async function ServicesPage() {
-  const [services, company] = await Promise.all([
-    getServices(),
-    getCompanyInfo()
-  ]);
-
+export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-gradient-to-r from-rose-100 via-amber-50 to-rose-100">
       {/* Hero Section */}
