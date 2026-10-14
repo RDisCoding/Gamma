@@ -1,17 +1,45 @@
-import type { CompanyInfo } from './types';
-
-export const company: CompanyInfo = {
-  companyName: 'Matrugaya Tirth Sidhpur',
-  heroTitle: 'Matrugaya Tirth Sidhpur',
-  heroSubtitle: '',
-  aboutTitle: 'Serving with Devotion & Tradition',
-  aboutText: 'Given the current pace at which people live their lives today, it becomes a task to find a skilled regional pandit for pujas and religious functions. Sidhpur Matrugaya Pandit, operating at Bindu Sarovar Mukti Dham Road, Sidhpur, Gujarat, exists for the sole reason that people deserve genuine and customized pandit services at a reasonable cost. Our pool of well-informed and skilled priests helps devotees complete religious rituals with utmost sincerity and perfection so that they can attain religious peace and blessings for a successful life.\n\nFor services related to Pandit, Purohit, Priest, or Poojari, you need to contact us. We analyze each devotee\'s needs and ensure top-notch services that are tailored to their needs.',
-  aboutImage: '/img/aboutus2.png',
-  brochurePdf: null,
-  phoneNumber: '+91 9879516707',
-  whatsappNumber: '+91 9879516707',
+/*
+ * Business facts that are the same in every language: phone numbers, email,
+ * address (as used in structured data), map pins and the enquiry form inbox.
+ * All wording shown on the site lives in src/i18n/en.ts, gu.ts and hi.ts.
+ *
+ * Confirmed by the owner on 14 Oct 2026.
+ */
+export const company = {
+  name: 'Matrugaya Tirth',
+  // "Sidhpur Matrugaya Pandit" was removed: it is another business's name.
+  alternateNames: ['Matrugaya Tirth Sidhpur', 'માતૃગયા તીર્થ', 'मातृगया तीर्थ'],
+  phoneDisplay: '+91 98795 16707',
+  phoneE164: '+919879516707',
+  whatsappE164: '+919879516707',
   email: 'matrugayatirth@gmail.com',
-  address: 'Uplisheri, Near Nilkanth Mahadev, Brahmania Pole,\nSidhpur. Dist-Patan,\nNorth Gujrat - 384151',
-  timings: '5pm - 9pm',
-  googleMapEmbedUrl: 'https://www.google.com/maps?q=Ashapuri%20Mata&ll=23.91662021,72.37700854&z=17&output=embed',
+  postalAddress: {
+    street: 'Uplisheri, near Nilkanth Mahadev, Brahmania Pole',
+    locality: 'Siddhpur',
+    district: 'Patan',
+    region: 'Gujarat',
+    postalCode: '384151',
+    country: 'IN',
+  },
+  /** The purohits' home near Ashapuri Mata, where families meet them first. */
+  meetingPoint: {
+    lat: 23.91662,
+    lng: 72.37701,
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=23.91662021%2C72.37700854',
+    embedUrl: 'https://www.google.com/maps?q=23.91662021,72.37700854&z=17&output=embed',
+  },
+  ritualLocation: {
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Bindu+Sarovar%2C+Siddhpur%2C+Gujarat',
+    embedUrl: 'https://www.google.com/maps?q=Bindu+Sarovar,+Siddhpur,+Gujarat&output=embed',
+  },
+  /** Languages the purohits speak (structured data). */
+  languages: ['Gujarati', 'Hindi', 'English'],
+  purohits: [
+    { name: 'Shri Alkeshbhai Dave', phoneDisplay: '+91 98795 16707', phoneE164: '+919879516707' },
+    { name: 'Shri Hiteshbhai Pandya (Patil)', phoneDisplay: '+91 85113 04407', phoneE164: '+918511304407' },
+  ],
+  formEndpoint: 'https://formsubmit.co/matrugayatirth@gmail.com',
+  // Quotes are given on request; add rows (in every language file) only if fixed prices are published.
+  priceGuide: [] as { label: string; amount: string; includes: string }[],
+  googleBusinessProfileUrl: null as string | null,
 };

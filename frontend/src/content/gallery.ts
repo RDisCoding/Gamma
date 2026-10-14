@@ -1,20 +1,27 @@
-import type { GalleryImage } from './types';
+/*
+ * Photographs of rituals at Siddhpur. Alt text and captions for each photo are
+ * in the language files (src/i18n, `gallery.images`), keyed by `id`.
+ */
+export interface Photo {
+  id: '01' | '02' | '03' | '04' | '05' | '06' | '07' | '08' | '09' | 'portrait';
+  image: string;
+  width: number;
+  height: number;
+}
 
-export const gallery: { images: GalleryImage[] } = {
-	images: [
-		{ image: '/gallery/01.jpeg', caption: 'Sacred ceremony' },
-		{ image: '/gallery/02.jpeg', caption: 'Matrugaya Tirth' },
-		{ image: '/gallery/03.jpeg', caption: 'Devotees gathering for puja' },
-		{ image: '/gallery/04.jpeg', caption: 'Ritual ceremony' },
-		{ image: '/gallery/05.jpeg', caption: 'Sacred prayers' },
-		{ image: '/gallery/06.jpeg', caption: 'Community worship' },
-		{ image: '/gallery/07.jpeg', caption: 'Vedic ceremony' },
-		{ image: '/gallery/08.jpeg', caption: 'Pilgrims at the sacred site' },
-		{ image: '/gallery/09.jpeg', caption: 'Ritual preparations' },
-		{ image: '/gallery/10.png', caption: 'Divine darshan' },
-	],
-};
+export const gallery: Photo[] = [
+  { id: '06', image: '/gallery/06.jpeg', width: 1600, height: 1204 },
+  { id: '09', image: '/gallery/09.jpeg', width: 904, height: 1600 },
+  { id: '02', image: '/gallery/02.jpeg', width: 1600, height: 720 },
+  { id: '05', image: '/gallery/05.jpeg', width: 1600, height: 1204 },
+  { id: '04', image: '/gallery/04.jpeg', width: 1204, height: 1600 },
+  { id: '07', image: '/gallery/07.jpeg', width: 1600, height: 1204 },
+  { id: '08', image: '/gallery/08.jpeg', width: 1600, height: 1204 },
+  { id: '01', image: '/gallery/01.jpeg', width: 720, height: 1600 },
+  { id: '03', image: '/gallery/03.jpeg', width: 576, height: 1280 },
+];
 
-export const featuredGallery: { images: GalleryImage[] } = {
-	images: [gallery.images[3], gallery.images[4], gallery.images[6]],
-};
+export const purohitPortrait: Photo = { id: 'portrait', image: '/img/aboutus2.png', width: 735, height: 1600 };
+
+/** Third-party YouTube videos about Siddhpur (titles/descriptions in the language files, same order). */
+export const videos = [{ youtubeId: 'nqwjtAamD8A' }, { youtubeId: 'V_D3VHIPoxw' }];
