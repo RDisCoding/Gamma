@@ -51,4 +51,10 @@ export function pageMetadata({ locale, title, description, path, image, type = '
   };
 }
 
+/** Google Search Console and Bing Webmaster Tools ownership tags (codes in content/site.ts). */
+export const siteVerification: Metadata['verification'] = {
+  google: site.verification.google || undefined,
+  other: site.verification.bing ? { 'msvalidate.01': site.verification.bing } : undefined,
+};
+
 export const absoluteUrl = (path: string) => (path === '/' ? `${site.url}/` : `${site.url}${path}`);

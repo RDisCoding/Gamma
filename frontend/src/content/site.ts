@@ -4,6 +4,14 @@ export const site = {
   /** Shown as "Last updated" on guides and in the sitemap. Update whenever content changes. */
   lastUpdated: '2026-10-14',
   ogImage: '/og-image.jpg',
+  /**
+   * Search engine ownership codes — the content="…" value of each tool's
+   * HTML verification tag. Not secret: they appear in the page source.
+   */
+  verification: {
+    google: 'G8Cx4cGAsHPhXNJngZEmj-s9pZEgTJw03lYCcsYqOZI',
+    bing: '',
+  },
 };
 
 /** Menu order. Labels come from `nav` in the language files (src/i18n). */

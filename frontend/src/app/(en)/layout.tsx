@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next';
 import SiteShell from '../../components/site/SiteShell';
 import { site } from '../../content/site';
 import { getDictionary } from '../../i18n';
+import { siteVerification } from '../../lib/seo';
 import { englishFonts } from '../fonts';
 
 const t = getDictionary('en');
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
   description: t.company.shortDescription,
   applicationName: site.name,
   formatDetection: { telephone: false, email: false, address: false },
+  verification: siteVerification,
 };
 
 export const viewport: Viewport = { themeColor: '#f6efe3', width: 'device-width', initialScale: 1 };
