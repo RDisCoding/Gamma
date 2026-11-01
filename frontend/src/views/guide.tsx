@@ -12,7 +12,7 @@ import ReviewNote from '../components/ui/ReviewNote';
 import ScamAlert from '../components/ui/ScamAlert';
 import Toc from '../components/ui/Toc';
 import { gallery } from '../content/gallery';
-import { getDictionary, localePath, type SiteLocale } from '../i18n';
+import { getDictionary, getMessages, localePath, type SiteLocale } from '../i18n';
 import { whatsappHref } from '../lib/contact';
 import { articleSchema, breadcrumbSchema, faqSchema, graph } from '../lib/schema';
 import { pageMetadata } from '../lib/seo';
@@ -36,6 +36,7 @@ function Section({ id, block, locale }: { id: string; block: { heading: string; 
 
 export function GuideView({ locale }: { locale: SiteLocale }) {
   const t = getDictionary(locale);
+  const msg = getMessages(locale);
   const g = t.guide;
   const photo = gallery[2];
 
@@ -120,7 +121,7 @@ export function GuideView({ locale }: { locale: SiteLocale }) {
             </p>
 
             <div className="not-prose mt-10 flex flex-wrap gap-3">
-              <CtaLink href={whatsappHref(t.common.defaultWhatsappMessage)} variant="whatsapp" icon={<FaWhatsapp />} cta="guide">
+              <CtaLink href={whatsappHref(msg.common.defaultWhatsappMessage)} variant="whatsapp" icon={<FaWhatsapp />} cta="guide">
                 {g.book.askCta}
               </CtaLink>
               <CtaLink href={localePath(locale, '/contact')} variant="ghost">

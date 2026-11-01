@@ -1,9 +1,15 @@
 /*
  * ENGLISH — the source text for the whole website.
  *
- * gu.ts (Gujarati) and hi.ts (Hindi) have exactly the same structure; change
- * the words there to correct a translation. TypeScript reports any missing or
- * extra key, so the three files always stay in step.
+ * gu.ts (Gujarati), hi.ts (Hindi), te.ts (Telugu), kn.ts (Kannada) and
+ * ta.ts (Tamil) have exactly the same structure; change the words there to
+ * correct a translation. TypeScript reports any missing or extra key, so the
+ * files always stay in step.
+ *
+ * WhatsApp messages and the email subject are what visitors send to the
+ * purohits, so they are always written in a language the purohits read:
+ * Gujarati and Hindi pages use their own text, every other language uses the
+ * English text here (see messageLocale in config.ts).
  *
  * Formatting you can use inside any text:
  *   **bold**              *emphasis* (shown in red inside headings)
@@ -31,7 +37,7 @@ export const en = {
     pleaseNote: 'Please note:',
     breadcrumb: 'Breadcrumb',
     defaultWhatsappMessage:
-      'Namaste. I found matrugayatirth.com and would like to enquire about Matrugaya Pooja at Siddhpur.',
+      'Namaste. I found matrugayatirth.com and would like to perform Matrugaya Pooja at Siddhpur.\n\nCity / state:\nPreferred date:\nNumber of family members:\nPreferred language:\n\nPlease share details of the pooja, booking and arrangements.',
   },
 
   nav: {
@@ -195,6 +201,12 @@ export const en = {
       question: 'Where is Matrugaya Pooja performed in Siddhpur?',
       answer:
         'At the Bindu Sarovar complex in Siddhpur, Patan district, north Gujarat — about 105 km north of Ahmedabad by road. Families first meet us at our home in Uplisheri, near Ashapuri Mata, and we go to Bindu Sarovar together. Please call before you come.',
+    },
+    {
+      id: 'spelling',
+      question: 'Are Sidhpur and Siddhpur the same place?',
+      answer:
+        'Yes. The town’s name is written in English as both Siddhpur and Sidhpur. It is the same town in Patan district, north Gujarat (railway station code SID), where Matrugaya Pooja is performed at Bindu Sarovar.',
     },
     {
       id: 'who',
@@ -471,7 +483,7 @@ export const en = {
 
   home: {
     meta: {
-      title: 'Matrugaya Pooja in Siddhpur, Gujarat | Matrugaya Tirth',
+      title: 'Matrugaya Pooja in Siddhpur (Sidhpur), Gujarat | Matrugaya Tirth',
       description:
         'Plan Matrugaya Pooja (Matru Shraddha) at Bindu Sarovar, Siddhpur with local tirth purohits. Ritual guidance, eligibility, what to bring, travel help and a clear quote before you travel.',
     },
@@ -479,8 +491,8 @@ export const en = {
       eyebrow: 'Tirth purohits at Bindu Sarovar',
       title: ['Matrugaya Pooja', 'in *Siddhpur,*', 'Gujarat'],
       intro:
-        'We are tirth purohits in Siddhpur. We conduct Matrugaya Pooja — the shraddha offered for one’s mother — at Bindu Sarovar, and help your family plan every step before you travel.',
-      whatsappCta: 'Enquire on WhatsApp',
+        'We are tirth purohits in Siddhpur (Sidhpur). We conduct Matrugaya Pooja — the shraddha offered for one’s mother — at Bindu Sarovar. Call or WhatsApp us before you travel and we will fix the date, samagri and arrangements with you.',
+      whatsappCta: 'Book on WhatsApp',
     },
     facts: [
       { term: 'Where', detail: 'Rites at Bindu Sarovar, Siddhpur — we meet you first at our home' },

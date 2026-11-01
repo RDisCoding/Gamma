@@ -10,7 +10,7 @@ import PageHero from '../components/ui/PageHero';
 import RelatedLinks from '../components/ui/RelatedLinks';
 import ReviewNote from '../components/ui/ReviewNote';
 import { serviceDetails, type ServiceSlug } from '../content/service-details';
-import { fill, getDictionary, type SiteLocale } from '../i18n';
+import { fill, getDictionary, getMessages, type SiteLocale } from '../i18n';
 import { whatsappHref } from '../lib/contact';
 import { breadcrumbSchema, faqSchema, graph, serviceSchema, webPageSchema } from '../lib/schema';
 import { pageMetadata } from '../lib/seo';
@@ -30,6 +30,7 @@ export function serviceDetailMetadata(locale: SiteLocale, slug: ServiceSlug): Me
 
 export function ServiceDetailView({ locale, slug }: { locale: SiteLocale; slug: ServiceSlug }) {
   const t = getDictionary(locale);
+  const msg = getMessages(locale);
   const d = t.serviceDetail;
   const s = d.items[slug];
   const path = `/services/${slug}`;
@@ -83,7 +84,7 @@ export function ServiceDetailView({ locale, slug }: { locale: SiteLocale; slug: 
                   ))}
                 </ul>
                 <CtaLink
-                  href={whatsappHref(fill(d.askMessage, { name: s.name }))}
+                  href={whatsappHref(fill(msg.serviceDetail.askMessage, { name: msg.serviceDetail.items[slug].name }))}
                   variant="whatsapp"
                   icon={<FaWhatsapp />}
                   cta={`service_${slug}`}

@@ -1,7 +1,7 @@
 import Script from 'next/script';
 import type { ReactNode } from 'react';
 import { Analytics } from '@vercel/analytics/react';
-import { getDictionary, hreflang, type SiteLocale } from '../../i18n';
+import { getDictionary, getMessages, hreflang, type SiteLocale } from '../../i18n';
 import EnquiryTracking from '../analytics/EnquiryTracking';
 import MotionProvider from '../motion/MotionProvider';
 import Footer from './Footer';
@@ -19,7 +19,7 @@ const bootScript = `document.documentElement.classList.add('js');setTimeout(func
 export default function SiteShell({ locale, fontClassName, children }: { locale: SiteLocale; fontClassName: string; children: ReactNode }) {
   const t = getDictionary(locale);
   const headerText: HeaderText = {
-    common: t.common,
+    common: { ...t.common, defaultWhatsappMessage: getMessages(locale).common.defaultWhatsappMessage },
     nav: t.nav,
     tagline: t.brand.tagline,
     header: t.header,

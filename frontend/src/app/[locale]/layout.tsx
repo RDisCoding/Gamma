@@ -3,9 +3,11 @@ import type { Metadata, Viewport } from 'next';
 import SiteShell from '../../components/site/SiteShell';
 import { site } from '../../content/site';
 import { getDictionary, prefixedLocales, type SiteLocale } from '../../i18n';
+import { siteVerification } from '../../lib/seo';
 import { indicFonts } from '../fonts';
 
-/* Gujarati (/gu) and Hindi (/hi). English lives in the (en) route group. */
+/* Gujarati (/gu), Hindi (/hi), Telugu (/te), Kannada (/kn) and Tamil (/ta).
+   English lives in the (en) route group. */
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -22,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: t.company.shortDescription,
     applicationName: site.name,
     formatDetection: { telephone: false, email: false, address: false },
+    verification: siteVerification,
   };
 }
 

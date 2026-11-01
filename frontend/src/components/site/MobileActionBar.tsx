@@ -1,5 +1,5 @@
 import { FaPhone, FaWhatsapp } from 'react-icons/fa';
-import { getDictionary, type SiteLocale } from '../../i18n';
+import { getDictionary, getMessages, type SiteLocale } from '../../i18n';
 import { telHref, whatsappHref } from '../../lib/contact';
 
 /** Thumb-reach call and WhatsApp buttons on small screens. */
@@ -16,7 +16,7 @@ export default function MobileActionBar({ locale }: { locale: SiteLocale }) {
           <FaPhone aria-hidden="true" /> {t.common.call}
         </a>
         <a
-          href={whatsappHref(t.common.defaultWhatsappMessage)}
+          href={whatsappHref(getMessages(locale).common.defaultWhatsappMessage)}
           target="_blank"
           rel="noopener noreferrer"
           data-cta="mobile_bar"

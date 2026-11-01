@@ -10,7 +10,7 @@ import SectionHeading from '../components/ui/SectionHeading';
 import { company } from '../content/company';
 import { gallery, purohitPortrait } from '../content/gallery';
 import { publishedReviews } from '../content/reviews';
-import { fill, getDictionary, localePath, type SiteLocale } from '../i18n';
+import { fill, getDictionary, getMessages, localePath, type SiteLocale } from '../i18n';
 import { telHref, whatsappHref } from '../lib/contact';
 import { breadcrumbSchema, graph, organizationSchema, personSchemas, webPageSchema } from '../lib/schema';
 import { pageMetadata } from '../lib/seo';
@@ -24,6 +24,7 @@ export function aboutMetadata(locale: SiteLocale): Metadata {
 
 export function AboutView({ locale }: { locale: SiteLocale }) {
   const t = getDictionary(locale);
+  const msg = getMessages(locale);
   const a = t.about;
   const address = `${t.company.street}, ${t.company.locality} ${company.postalAddress.postalCode}`;
 
@@ -153,7 +154,7 @@ export function AboutView({ locale }: { locale: SiteLocale }) {
           ))}
         </div>
         <div className="mx-auto mt-14 flex max-w-[1440px] flex-wrap gap-3">
-          <CtaLink href={whatsappHref(a.messageText)} variant="whatsapp" icon={<FaWhatsapp />} cta="about">
+          <CtaLink href={whatsappHref(msg.about.messageText)} variant="whatsapp" icon={<FaWhatsapp />} cta="about">
             {a.messageCta}
           </CtaLink>
           <CtaLink href={localePath(locale, '/contact')} variant="ghost">

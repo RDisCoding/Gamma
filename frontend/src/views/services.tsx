@@ -7,7 +7,7 @@ import CtaLink from '../components/ui/CtaLink';
 import PageHero from '../components/ui/PageHero';
 import RelatedLinks from '../components/ui/RelatedLinks';
 import { serviceHrefs } from '../content/services';
-import { fill, getDictionary, localePath, type SiteLocale } from '../i18n';
+import { fill, getDictionary, getMessages, localePath, type SiteLocale } from '../i18n';
 import { whatsappHref } from '../lib/contact';
 import { breadcrumbSchema, graph, webPageSchema } from '../lib/schema';
 import { pageMetadata } from '../lib/seo';
@@ -21,6 +21,7 @@ export function servicesMetadata(locale: SiteLocale): Metadata {
 
 export function ServicesView({ locale }: { locale: SiteLocale }) {
   const t = getDictionary(locale);
+  const msg = getMessages(locale);
   const s = t.servicesPage;
 
   return (
@@ -107,7 +108,7 @@ export function ServicesView({ locale }: { locale: SiteLocale }) {
           <p className="display-md max-w-[20ch]" data-reveal>
             {s.bandTitle}
           </p>
-          <CtaLink href={whatsappHref(t.common.defaultWhatsappMessage)} variant="light" icon={<FaWhatsapp />} cta="services_band">
+          <CtaLink href={whatsappHref(msg.common.defaultWhatsappMessage)} variant="light" icon={<FaWhatsapp />} cta="services_band">
             {s.bandCta}
           </CtaLink>
         </div>

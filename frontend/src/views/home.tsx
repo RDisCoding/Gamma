@@ -17,7 +17,7 @@ import { company } from '../content/company';
 import { gallery, purohitPortrait } from '../content/gallery';
 import { publishedReviews } from '../content/reviews';
 import { serviceHrefs } from '../content/services';
-import { fill, getDictionary, localePath, type SiteLocale } from '../i18n';
+import { fill, getDictionary, getMessages, localePath, type SiteLocale } from '../i18n';
 import { telHref, whatsappHref } from '../lib/contact';
 import { faqSchema, graph, organizationSchema, personSchemas, webPageSchema, websiteSchema } from '../lib/schema';
 import { pageMetadata } from '../lib/seo';
@@ -29,6 +29,7 @@ export function homeMetadata(locale: SiteLocale): Metadata {
 
 export function HomeView({ locale }: { locale: SiteLocale }) {
   const t = getDictionary(locale);
+  const msg = getMessages(locale);
   const h = t.home;
   const lp = (path: string) => localePath(locale, path);
   const img = (id: keyof typeof t.gallery.images) => t.gallery.images[id];
@@ -70,7 +71,7 @@ export function HomeView({ locale }: { locale: SiteLocale }) {
               {h.hero.intro}
             </p>
             <div className="hero-rise mt-10 flex flex-wrap gap-3" style={{ ['--d' as string]: 5 }}>
-              <CtaLink href={whatsappHref(t.common.defaultWhatsappMessage)} variant="whatsapp" icon={<FaWhatsapp />} cta="hero">
+              <CtaLink href={whatsappHref(msg.common.defaultWhatsappMessage)} variant="whatsapp" icon={<FaWhatsapp />} cta="hero">
                 {h.hero.whatsappCta}
               </CtaLink>
               <CtaLink href={telHref()} variant="ghost" icon={<FaPhone />} cta="hero">
@@ -410,7 +411,7 @@ export function HomeView({ locale }: { locale: SiteLocale }) {
             <SectionHeading id="enquire-title" eyebrow={h.enquire.eyebrow} title={richLines(h.enquire.title, locale)} intro={<p>{h.enquire.intro}</p>} />
           </div>
           <div className="lg:col-span-7" data-reveal>
-            <EnquiryBuilder text={t.enquiry} />
+            <EnquiryBuilder text={t.enquiry} messageText={msg.enquiry} />
           </div>
         </div>
       </section>

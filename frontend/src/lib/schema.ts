@@ -3,7 +3,7 @@
 import { company } from '../content/company';
 import { site } from '../content/site';
 import { getDictionary } from '../i18n';
-import { hreflang, localePath, type SiteLocale } from '../i18n/config';
+import { hreflang, localePath, siteLocales, type SiteLocale } from '../i18n/config';
 import { absoluteUrl } from './seo';
 
 export const ORG_ID = `${site.url}/#organization`;
@@ -51,7 +51,7 @@ export function websiteSchema() {
     '@id': WEBSITE_ID,
     url: `${site.url}/`,
     name: site.name,
-    inLanguage: ['en-IN', 'gu-IN', 'hi-IN'],
+    inLanguage: siteLocales.map((l) => hreflang[l]),
     publisher: { '@id': ORG_ID },
   };
 }

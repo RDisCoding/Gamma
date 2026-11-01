@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useId, useRef, useState } from 'react';
 import { HiOutlineGlobeAlt } from 'react-icons/hi';
 import { languages } from '../../content/languages';
-import { hreflang, localePath, splitLocale, type SiteLocale } from '../../i18n/config';
+import { hreflang, isSiteLocale, localePath, splitLocale, type SiteLocale } from '../../i18n/config';
 import { trackEvent } from '../../lib/analytics';
 import { currentLanguage, restoreEnglish, setLanguageCookie, translatePage } from '../../lib/translate';
 
@@ -20,9 +20,9 @@ const auto = languages.filter((l) => !l.own);
 const scriptFont: Record<string, string> = { gu: 'font-guj', hi: 'font-deva' };
 
 /**
- * Navbar language menu. English, Gujarati and Hindi link to the site's own
- * translated pages; every other language translates the English page with
- * Google Translate.
+ * Navbar language menu. Languages with their own translation (own: true in
+ * content/languages.ts) link to the site's translated pages; every other
+ * language translates the English page with Google Translate.
  */
 export default function LanguagePicker({ locale, labels, tone = 'dark' }: { locale: SiteLocale; labels: Labels; tone?: 'dark' | 'light' }) {
   const pathname = usePathname();
@@ -41,7 +41,7 @@ export default function LanguagePicker({ locale, labels, tone = 'dark' }: { loca
     if (locale !== 'en' || own.some((l) => l.code === saved)) {
       // Our own translations never run through Google Translate.
       setLanguageCookie(null);
-      if (locale === 'en' && (saved === 'gu' || saved === 'hi')) window.location.replace(localePath(saved, path));
+      if (locale === 'en' && isSiteLocale(saved)) window.location.replace(localePath(saved, path));
       return;
     }
     const id = window.setTimeout(() => {

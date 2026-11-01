@@ -11,29 +11,43 @@ const fill = (text: string, value: string, key = 'value') => text.replace(`{${ke
  * Turns a few planning answers into a ready-to-send WhatsApp message, so the
  * purohit gets everything needed to reply with dates and a quote. Nothing is
  * stored or sent anywhere until the visitor taps the button.
+ *
+ * `text` labels the form in the page's language; `messageText` writes the
+ * message in a language the purohits read (the same dictionary on English,
+ * Gujarati and Hindi pages). Choices are kept by position so each maps to
+ * the same option in both.
  */
-export default function EnquiryBuilder({ text, tone = 'dark' }: { text: Dictionary['enquiry']; tone?: 'dark' | 'light' }) {
+export default function EnquiryBuilder({
+  text,
+  messageText = text,
+  tone = 'dark',
+}: {
+  text: Dictionary['enquiry'];
+  messageText?: Dictionary['enquiry'];
+  tone?: 'dark' | 'light';
+}) {
   const id = useId();
-  const [ritual, setRitual] = useState(text.rituals[0]);
+  const [ritual, setRitual] = useState(0);
   const [when, setWhen] = useState('');
   const [people, setPeople] = useState('');
   const [from, setFrom] = useState('');
-  const [language, setLanguage] = useState('');
+  const [language, setLanguage] = useState(-1);
   const [needStay, setNeedStay] = useState(false);
   const [needTransport, setNeedTransport] = useState(false);
-  const m = text.message;
+  const out = messageText;
+  const m = out.message;
 
   const message = useMemo(() => {
-    const lines = [fill(m.intro, ritual, 'ritual')];
+    const lines = [fill(m.intro, out.rituals[ritual], 'ritual')];
     if (when) lines.push(fill(m.when, when));
     if (people) lines.push(fill(m.people, people));
     if (from) lines.push(fill(m.from, from));
-    if (language) lines.push(fill(m.language, language));
+    if (language >= 0) lines.push(fill(m.language, out.languageOptions[language]));
     const help = [needStay && m.helpStay, needTransport && m.helpTransport].filter(Boolean) as string[];
     if (help.length) lines.push(fill(m.help, help.join(m.helpJoin)));
     lines.push(m.signature);
     return lines.join('\n');
-  }, [m, ritual, when, people, from, language, needStay, needTransport]);
+  }, [out, m, ritual, when, people, from, language, needStay, needTransport]);
 
   const light = tone === 'light';
   const field = `w-full rounded-2xl border px-4 py-3.5 text-[1rem] outline-none transition-colors focus:border-sindoor ${
@@ -47,9 +61,11 @@ export default function EnquiryBuilder({ text, tone = 'dark' }: { text: Dictiona
         <label htmlFor={`${id}-ritual`} className={label}>
           {text.ritual}
         </label>
-        <select id={`${id}-ritual`} value={ritual} onChange={(e) => setRitual(e.target.value)} className={field}>
-          {text.rituals.map((r) => (
-            <option key={r}>{r}</option>
+        <select id={`${id}-ritual`} value={ritual} onChange={(e) => setRitual(Number(e.target.value))} className={field}>
+          {text.rituals.map((r, i) => (
+            <option key={r} value={i}>
+              {r}
+            </option>
           ))}
         </select>
       </div>
@@ -82,10 +98,12 @@ export default function EnquiryBuilder({ text, tone = 'dark' }: { text: Dictiona
         <label htmlFor={`${id}-lang`} className={label}>
           {text.language}
         </label>
-        <select id={`${id}-lang`} value={language} onChange={(e) => setLanguage(e.target.value)} className={field}>
-          <option value="">{text.noPreference}</option>
-          {text.languageOptions.map((l) => (
-            <option key={l}>{l}</option>
+        <select id={`${id}-lang`} value={language} onChange={(e) => setLanguage(Number(e.target.value))} className={field}>
+          <option value={-1}>{text.noPreference}</option>
+          {text.languageOptions.map((l, i) => (
+            <option key={l} value={i}>
+              {l}
+            </option>
           ))}
         </select>
       </div>

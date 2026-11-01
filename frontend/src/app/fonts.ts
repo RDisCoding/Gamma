@@ -1,10 +1,16 @@
 import {
   Hanken_Grotesk,
   Hind,
+  Hind_Guntur,
+  Hind_Madurai,
   Hind_Vadodara,
   Instrument_Serif,
+  Noto_Sans_Kannada,
   Noto_Serif_Gujarati,
   Tiro_Devanagari_Hindi,
+  Tiro_Kannada,
+  Tiro_Tamil,
+  Tiro_Telugu,
 } from 'next/font/google';
 
 /* Latin — every page. */
@@ -52,5 +58,29 @@ export const devanagariBody = Hind({
   preload: false,
 });
 
+/* Telugu, Kannada and Tamil pages: a Tiro display face for headings (as for
+   Hindi) and a plain sans for body text. Only downloaded on those pages. */
+export const teluguDisplay = Tiro_Telugu({ subsets: ['telugu'], weight: '400', variable: '--font-tiro-te', display: 'swap', preload: false });
+export const kannadaDisplay = Tiro_Kannada({ subsets: ['kannada'], weight: '400', variable: '--font-tiro-kn', display: 'swap', preload: false });
+export const tamilDisplay = Tiro_Tamil({ subsets: ['tamil'], weight: '400', variable: '--font-tiro-ta', display: 'swap', preload: false });
+export const teluguBody = Hind_Guntur({ subsets: ['telugu'], weight: ['400', '600'], variable: '--font-body-te', display: 'swap', preload: false });
+export const kannadaBody = Noto_Sans_Kannada({ subsets: ['kannada'], variable: '--font-body-kn', display: 'swap', preload: false });
+export const tamilBody = Hind_Madurai({ subsets: ['tamil'], weight: ['400', '600'], variable: '--font-body-ta', display: 'swap', preload: false });
+
 export const englishFonts = [instrument, hanken, tiro, gujaratiDisplay].map((f) => f.variable).join(' ');
-export const indicFonts = [instrument, hanken, tiro, gujaratiDisplay, gujaratiBody, devanagariBody].map((f) => f.variable).join(' ');
+export const indicFonts = [
+  instrument,
+  hanken,
+  tiro,
+  gujaratiDisplay,
+  gujaratiBody,
+  devanagariBody,
+  teluguDisplay,
+  kannadaDisplay,
+  tamilDisplay,
+  teluguBody,
+  kannadaBody,
+  tamilBody,
+]
+  .map((f) => f.variable)
+  .join(' ');

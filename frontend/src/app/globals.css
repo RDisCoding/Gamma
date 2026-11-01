@@ -127,7 +127,7 @@ body {
 }
 
 /* ------------------------------------------------------------------
-   Gujarati and Hindi pages
+   Gujarati, Hindi, Telugu, Kannada and Tamil pages
    Script fonts carry the text (Latin falls back to the English fonts),
    lines get more room for vowel signs above and below, and devices that
    only suit Latin type (italics, tracking, capitals) are switched off.
@@ -140,37 +140,62 @@ html:lang(hi) {
   --font-display: var(--font-instrument), var(--font-tiro), serif;
   --font-sans: var(--font-hanken), var(--font-body-deva), ui-sans-serif, system-ui, sans-serif;
 }
-:is(:lang(gu), :lang(hi)) em {
+html:lang(te) {
+  --font-display: var(--font-instrument), var(--font-tiro-te), serif;
+  --font-sans: var(--font-hanken), var(--font-body-te), ui-sans-serif, system-ui, sans-serif;
+}
+html:lang(kn) {
+  --font-display: var(--font-instrument), var(--font-tiro-kn), serif;
+  --font-sans: var(--font-hanken), var(--font-body-kn), ui-sans-serif, system-ui, sans-serif;
+}
+html:lang(ta) {
+  --font-display: var(--font-instrument), var(--font-tiro-ta), serif;
+  --font-sans: var(--font-hanken), var(--font-body-ta), ui-sans-serif, system-ui, sans-serif;
+}
+:is(:lang(gu), :lang(hi), :lang(te), :lang(kn), :lang(ta)) em {
   font-style: normal;
 }
-:is(:lang(gu), :lang(hi)) .eyebrow {
+:is(:lang(gu), :lang(hi), :lang(te), :lang(kn), :lang(ta)) .eyebrow {
   letter-spacing: 0.02em;
   text-transform: none;
   font-size: 0.82rem;
 }
-:is(:lang(gu), :lang(hi)) :is(.display-xl, .display-lg, .display-md) {
+:is(:lang(gu), :lang(hi), :lang(te), :lang(kn), :lang(ta)) :is(.display-xl, .display-lg, .display-md) {
   line-height: 1.2;
   letter-spacing: 0;
 }
-:is(:lang(gu), :lang(hi)) .display-xl {
+:is(:lang(gu), :lang(hi), :lang(te), :lang(kn), :lang(ta)) .display-xl {
   font-size: clamp(2.6rem, 8.4vw, 7.25rem);
 }
-:is(:lang(gu), :lang(hi)) .display-lg {
+:is(:lang(gu), :lang(hi), :lang(te), :lang(kn), :lang(ta)) .display-lg {
   font-size: clamp(2.2rem, 5.6vw, 5rem);
 }
-:is(:lang(gu), :lang(hi)) :is(.hero-line, .line-mask) {
+:is(:lang(gu), :lang(hi), :lang(te), :lang(kn), :lang(ta)) :is(.hero-line, .line-mask) {
   padding-top: 0.12em;
   margin-top: -0.12em;
   padding-bottom: 0.22em;
   margin-bottom: -0.22em;
 }
-:is(:lang(gu), :lang(hi)) body {
+:is(:lang(gu), :lang(hi), :lang(te), :lang(kn), :lang(ta)) body {
   line-height: 1.65;
+  /* Last resort: a word wider than its column wraps instead of widening the page. */
+  overflow-wrap: anywhere;
 }
-:is(:lang(gu), :lang(hi)) .prose-temple {
+/* Tamil sets wide and its compounds run long, so display type is smaller on
+   phones and whole words fit the column. */
+html:lang(ta) .display-xl {
+  font-size: clamp(2.3rem, 7.6vw, 6.75rem);
+}
+html:lang(ta) .display-lg {
+  font-size: clamp(1.8rem, 5vw, 4.5rem);
+}
+html:lang(ta) .display-md {
+  font-size: clamp(1.6rem, 3.6vw, 3.25rem);
+}
+:is(:lang(gu), :lang(hi), :lang(te), :lang(kn), :lang(ta)) .prose-temple {
   line-height: 1.85;
 }
-:is(:lang(gu), :lang(hi)) .prose-temple :is(h2, h3) {
+:is(:lang(gu), :lang(hi), :lang(te), :lang(kn), :lang(ta)) .prose-temple :is(h2, h3) {
   line-height: 1.3;
 }
 

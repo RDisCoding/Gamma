@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { FaPhone, FaWhatsapp } from 'react-icons/fa';
 import { company } from '../../content/company';
 import { site } from '../../content/site';
-import { getDictionary, localePath, type SiteLocale } from '../../i18n';
+import { getDictionary, getMessages, localePath, type SiteLocale } from '../../i18n';
 import { telHref, whatsappHref } from '../../lib/contact';
 import Rich, { richLines } from '../i18n/Rich';
 import CtaLink from '../ui/CtaLink';
@@ -63,7 +63,7 @@ export default function Footer({ locale }: { locale: SiteLocale }) {
           <div className="space-y-6" data-reveal style={{ ['--d' as string]: 2 }}>
             <p className="max-w-md text-paper/70">{t.footer.text}</p>
             <div className="flex flex-wrap gap-3">
-              <CtaLink href={whatsappHref(t.common.defaultWhatsappMessage)} variant="whatsapp" icon={<FaWhatsapp />} cta="footer">
+              <CtaLink href={whatsappHref(getMessages(locale).common.defaultWhatsappMessage)} variant="whatsapp" icon={<FaWhatsapp />} cta="footer">
                 {t.common.whatsapp}
               </CtaLink>
               <CtaLink href={telHref()} variant="ghost-light" icon={<FaPhone />} cta="footer">

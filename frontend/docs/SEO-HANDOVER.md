@@ -1,7 +1,7 @@
 # matrugayatirth.com — SEO, AI search & redesign handover
 
-**Prepared:** 14 October 2026 · **Scope:** audit, implementation and QA of the website in `frontend/`.
-**Status:** implemented and tested locally; **not yet deployed** — several items need the owner's confirmation first (see §10).
+**Prepared:** 14 October 2026 · **Updated:** 2 November 2026 · **Scope:** audit, implementation and QA of the website in `frontend/`.
+**Status:** deployed 15 October 2026. The 2 November update (search visibility, Telugu/Kannada/Tamil pages) is summarised directly below.
 
 > Nothing here guarantees rankings, AI citations or a number of enquiries. The work makes the site
 > accurate, crawlable, fast and measurable; results must be judged from Search Console, Bing and
@@ -24,6 +24,43 @@
 11. [Outstanding dependencies and the next 90 days](#11-outstanding-dependencies-and-the-next-90-days)
 12. [How to update the site](#12-how-to-update-the-site)
 13. [Fact sources](#13-fact-sources)
+
+---
+
+## Update — 2 November 2026: search visibility and South Indian languages
+
+### Why the site does not show for "sidhpur matrugaya" yet
+
+Checked on 2 November 2026:
+
+- **The site itself is fine.** All 36 sitemap URLs return 200 with a matching canonical, nothing is `noindex`, robots.txt allows every search crawler, and the bare domain redirects (308) to `www`. The domain name is not the problem — it already contains "matrugaya".
+- **It has probably not been indexed yet.** A web search for the query, and even for "matrugayatirth.com", did not return the site at all. Search Console has not been set up, so Google has not been sent the sitemap. Confirm by searching `site:matrugayatirth.com` on Google and in Search Console → Pages.
+- **The results for this query are well established.** They are news reports (Gujarat Samachar, DeshGujarat), travel writers (Inditales, Magik India), Wikipedia, Incredible India and competitor pandit sites — one of them uses "Sidhpur Matrugaya" in its own brand name. These have years of history and links; a new site has neither yet.
+- **No Google Business Profile.** For searches like this, Google often shows a map with local businesses above the web results; without a profile the site cannot appear there.
+
+### What changed in the code
+
+| Change | Where |
+|---|---|
+| **Telugu (`/te`), Kannada (`/kn`) and Tamil (`/ta`)** — full translations of every page, as real pages Google can index, in the sitemap with hreflang. They moved from "Automatic (Google)" to "Translated by us" in the language menu. AI-drafted — **a native speaker must read them** (§10). | `src/i18n/te.ts`, `kn.ts`, `ta.ts`; `config.ts`; `content/languages.ts`; fonts in `app/fonts.ts` |
+| **Messages always reach the purohits in a language they read.** On Telugu, Kannada and Tamil pages, the ready-made WhatsApp texts, the enquiry builder's message and the email subject are written in English. The visitor still sees the form in their language. | `purohitLocales` / `getMessages` in `src/i18n` |
+| **WhatsApp template.** The default message now asks for city/state, preferred date, number of family members and preferred language, so the first message carries what the purohit needs. | `common.defaultWhatsappMessage` |
+| **"Book before you travel."** Home hero button is now "Book on WhatsApp"; the intro tells families to call or WhatsApp before travelling to fix the date, samagri and arrangements. | `home.hero` |
+| **"Sidhpur" spelling.** Added to the English home title and intro, plus a FAQ "Are Sidhpur and Siddhpur the same place?" in every language. | `home.meta`, `faqs` |
+| **Search Console verification** by HTML tag — the owner's Google code is live (deployed 2 Nov 2026). A Bing code can be added the same way. | `verification` in `src/content/site.ts` |
+
+The other languages (Marathi, Bengali, Malayalam, …) still use Google Translate. Those translations happen in the visitor's browser and are **never indexed**, so they help visitors read the site but cannot bring visitors from search. Malayalam is the natural next language to translate properly if Kerala enquiries grow.
+
+### Owner actions, in order
+
+1. **Google Search Console — first, this week.** The HTML-tag verification code is live on the home page; click *Verify* in Search Console. Then submit `sitemap.xml` and use URL Inspection → *Request indexing* for `/`, `/matrugaya-pooja-guide`, `/cost-and-booking`, `/gu`, `/hi`, `/te`, `/kn` and `/ta`.
+2. **Google Business Profile — this week** (§7B). The biggest lever for local searches like "sidhpur matrugaya". Families visit the Uplisheri home, so the address can be shown. Then ask past families for genuine reviews — never fake or paid ones.
+3. **Native-speaker review** of `/te`, `/kn` and `/ta` (and `/gu`, `/hi`): past yajmans from those states are ideal reviewers. Corrections go in the language files.
+4. **GA4** (§8A), so WhatsApp and call clicks can be counted by state and language page.
+5. **Links and mentions** (§7C): put the website link in the WhatsApp Business profile and any Facebook, Instagram or YouTube profiles; consistent listings; outreach to writers who already cover Siddhpur.
+6. **Optional — Google Ads.** The only way to appear immediately for "sidhpur matrugaya". Start small, target the states enquiries come from, send each ad to the matching language page, and judge it by cost per real enquiry, not clicks. Not set up here: it needs the owner's account and budget.
+
+Even after indexing, new pages usually take weeks to months to rank for competitive searches, and no ranking can be guaranteed. Search Console will show which searches the site starts appearing for — that is the data to plan from.
 
 ---
 
@@ -255,8 +292,8 @@ Whether a profile exists could not be determined. Before creating one, search Go
 Legitimate opportunities (in priority order): Justdial/IndiaMART-style listings **only** with consistent NAP; Inditales (practical-guide link request); ecoheritage.cpreec.org's Siddhpur page (lists a competitor); Wikivoyage's empty Siddhpur "Sleep"/"Do" sections (factual edits, no promotion); Gujarati news features (Gujarat Samachar, DeshGujarat) around Kartik season; YouTube creators who film Bindu Sarovar (offer to explain the rite on camera). Avoid paid links, link farms and mass directory submissions.
 
 **Languages (owner's choice: "both").**
-- **Own, editable translations** for Gujarati and Hindi — every word on the site lives in `src/i18n/en.ts`, `gu.ts` and `hi.ts` (same keys in each). These are real pages at `/gu/…` and `/hi/…`, so they can rank in Gujarati and Hindi searches. They were drafted with AI using a fixed glossary (so "Matrugaya" is always માતૃગયા / मातृगया) and **must be read by the owner before launch** (§10).
-- **Google Translate for 13 more languages** (Marathi, Bengali, Telugu, Tamil, Kannada, Malayalam, Punjabi, Odia, Assamese, Nepali, Sindhi, Urdu, Sanskrit) — it translates the English page in the browser, is labelled "automatic" in the menu, and is not indexed. The choice is stored in Google's `googtrans` cookie; while active, internal links load as full pages so the translator and React never fight over the same text (`src/lib/translate.ts`).
+- **Own, editable translations** for Gujarati and Hindi, and (since 2 Nov 2026) Telugu, Kannada and Tamil — every word on the site lives in `src/i18n/en.ts`, `gu.ts`, `hi.ts`, `te.ts`, `kn.ts` and `ta.ts` (same keys in each). These are real pages at `/gu/…`, `/hi/…`, `/te/…`, `/kn/…` and `/ta/…`, so they can rank in searches in those languages. They were drafted with AI using a fixed glossary and **must be read by a native speaker** (§10). Messages visitors send to the purohits are always prepared in Gujarati, Hindi or English (`purohitLocales` in `src/i18n/config.ts`).
+- **Google Translate for 10 more languages** (Marathi, Bengali, Malayalam, Punjabi, Odia, Assamese, Nepali, Sindhi, Urdu, Sanskrit) — it translates the English page in the browser, is labelled "automatic" in the menu, and is not indexed. The choice is stored in Google's `googtrans` cookie; while active, internal links load as full pages so the translator and React never fight over the same text (`src/lib/translate.ts`).
 - The language menu (`src/components/site/LanguagePicker.tsx`) lists both groups; the list itself is in `src/content/languages.ts`. To promote a language from automatic to owned, see the README ("Adding another language").
 
 ---
@@ -281,8 +318,8 @@ No names, phone numbers or message text are ever sent. **A click is an enquiry o
 
 ### 8B. Search Console & Bing
 
-1. Add a **Domain** property for `matrugayatirth.com` (DNS verification) — covers www/apex/http/https.
-2. Submit `https://www.matrugayatirth.com/sitemap.xml`; request indexing for `/`, `/matrugaya-pooja-guide`, `/plan-your-visit`, `/cost-and-booking`.
+1. Add a **Domain** property for `matrugayatirth.com` (DNS verification) — covers www/apex/http/https. Alternative (in use since 2 Nov 2026): a URL-prefix property verified by HTML tag — the code is `verification.google` in `src/content/site.ts`; a Bing code goes in `verification.bing`.
+2. Submit `https://www.matrugayatirth.com/sitemap.xml`; request indexing for `/`, `/matrugaya-pooja-guide`, `/plan-your-visit`, `/cost-and-booking` and each language home (`/gu`, `/hi`, `/te`, `/kn`, `/ta`).
 3. Bing Webmaster Tools: import from Search Console, submit the sitemap, enable **AI Performance** (citations in Copilot/Bing AI answers).
 4. Check Search Console's "Generative AI performance" report where available.
 
@@ -360,6 +397,7 @@ Tested on the production build (`npm run build`) served locally, 14 Oct 2026.
 
 **Still open**
 - [ ] Read the Gujarati and Hindi versions (`/gu`, `/hi`) and correct any wording in `src/i18n/gu.ts` / `hi.ts` — especially religious terms, the scam warning and the WhatsApp message templates.
+- [ ] Have native speakers read the Telugu, Kannada and Tamil versions (`/te`, `/kn`, `/ta`; files `te.ts`, `kn.ts`, `ta.ts`) — ritual terms, place names and the scam warning first.
 - [ ] Purohit review of `/matrugaya-pooja-guide`, `/services/*` and `/learn-more`; then add "Reviewed by" to those pages.
 - [ ] Create the Google Business Profile (§7B) and set `googleBusinessProfileUrl` in `company.ts`.
 - [ ] Account work in §11.
@@ -381,7 +419,7 @@ Tested on the production build (`npm run build`) served locally, 14 Oct 2026.
 
 ## 12. How to update the site
 
-- **Any words on the site, in any language:** `src/i18n/en.ts` (English), `gu.ts` (Gujarati), `hi.ts` (Hindi). Change the same key in each file. Formatting: `**bold**`, `*emphasis*`, `[link](/path)`, `{phone}`. A missing or misspelt key stops the build and names it.
+- **Any words on the site, in any language:** `src/i18n/en.ts` (English), `gu.ts` (Gujarati), `hi.ts` (Hindi), `te.ts` (Telugu), `kn.ts` (Kannada), `ta.ts` (Tamil). Change the same key in each file. Formatting: `**bold**`, `*emphasis*`, `[link](/path)`, `{phone}`. A missing or misspelt key stops the build and names it.
 - **Phone, WhatsApp, email, address, map pins, form inbox:** `src/content/company.ts`. Prices: add rows to `priceGuide` and the table appears on `/cost-and-booking`.
 - **Services:** names and text in the language files (`services.groups`, `serviceDetail.items`); which ones get their own page in `src/content/services.ts` and `service-details.ts`.
 - **Photos:** add the file to `public/gallery/`, an entry (real dimensions) to `src/content/gallery.ts`, and its `alt`/`caption` under `gallery.images` in each language file. Responsive WebP versions are generated on the next `npm run dev` / `npm run build`.

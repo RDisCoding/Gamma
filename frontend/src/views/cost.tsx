@@ -9,7 +9,7 @@ import PageHero from '../components/ui/PageHero';
 import RelatedLinks from '../components/ui/RelatedLinks';
 import SectionHeading from '../components/ui/SectionHeading';
 import { company } from '../content/company';
-import { getDictionary, type SiteLocale } from '../i18n';
+import { getDictionary, getMessages, type SiteLocale } from '../i18n';
 import { telHref, whatsappHref } from '../lib/contact';
 import { breadcrumbSchema, faqSchema, graph, webPageSchema } from '../lib/schema';
 import { pageMetadata } from '../lib/seo';
@@ -23,6 +23,7 @@ export function costMetadata(locale: SiteLocale): Metadata {
 
 export function CostView({ locale }: { locale: SiteLocale }) {
   const t = getDictionary(locale);
+  const msg = getMessages(locale);
   const c = t.cost;
 
   return (
@@ -46,7 +47,7 @@ export function CostView({ locale }: { locale: SiteLocale }) {
         }
       >
         <div className="hero-rise mt-10 flex flex-wrap gap-3" style={{ ['--d' as string]: 4 }}>
-          <CtaLink href={whatsappHref(c.quoteMessage)} variant="whatsapp" icon={<FaWhatsapp />} cta="cost_hero">
+          <CtaLink href={whatsappHref(msg.cost.quoteMessage)} variant="whatsapp" icon={<FaWhatsapp />} cta="cost_hero">
             {c.quoteCta}
           </CtaLink>
           <CtaLink href={telHref()} variant="ghost" icon={<FaPhone />} cta="cost_hero">
@@ -149,7 +150,7 @@ export function CostView({ locale }: { locale: SiteLocale }) {
             <SectionHeading id="book-title" index="04" eyebrow={c.book.eyebrow} title={richLines(c.book.title, locale)} intro={<p>{c.book.intro}</p>} />
           </div>
           <div className="lg:col-span-7" data-reveal>
-            <EnquiryBuilder text={t.enquiry} />
+            <EnquiryBuilder text={t.enquiry} messageText={msg.enquiry} />
           </div>
         </div>
       </section>

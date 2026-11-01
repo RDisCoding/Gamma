@@ -9,7 +9,7 @@ import RelatedLinks from '../components/ui/RelatedLinks';
 import ReviewNote from '../components/ui/ReviewNote';
 import ScamAlert from '../components/ui/ScamAlert';
 import SectionHeading from '../components/ui/SectionHeading';
-import { fill, getDictionary, type SiteLocale } from '../i18n';
+import { fill, getDictionary, getMessages, type SiteLocale } from '../i18n';
 import { whatsappHref } from '../lib/contact';
 import { articleSchema, breadcrumbSchema, graph } from '../lib/schema';
 import { pageMetadata } from '../lib/seo';
@@ -23,6 +23,7 @@ export function visitMetadata(locale: SiteLocale): Metadata {
 
 export function VisitView({ locale }: { locale: SiteLocale }) {
   const t = getDictionary(locale);
+  const msg = getMessages(locale);
   const v = t.visit;
 
   return (
@@ -147,7 +148,7 @@ export function VisitView({ locale }: { locale: SiteLocale }) {
               intro={<p>{v.checklist.intro}</p>}
             />
             <div className="mt-10" data-reveal>
-              <CtaLink href={whatsappHref(v.checklist.whatsappMessage)} variant="whatsapp" icon={<FaWhatsapp />} cta="visit_checklist">
+              <CtaLink href={whatsappHref(msg.visit.checklist.whatsappMessage)} variant="whatsapp" icon={<FaWhatsapp />} cta="visit_checklist">
                 {v.checklist.cta}
               </CtaLink>
             </div>

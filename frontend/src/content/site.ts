@@ -2,7 +2,7 @@ export const site = {
   url: 'https://www.matrugayatirth.com',
   name: 'Matrugaya Tirth',
   /** Shown as "Last updated" on guides and in the sitemap. Update whenever content changes. */
-  lastUpdated: '2026-10-14',
+  lastUpdated: '2026-11-02',
   ogImage: '/og-image.jpg',
   /**
    * Search engine ownership codes — the content="…" value of each tool's

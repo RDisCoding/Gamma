@@ -8,7 +8,7 @@ import MapFacade from '../components/ui/MapFacade';
 import PageHero from '../components/ui/PageHero';
 import ScamAlert from '../components/ui/ScamAlert';
 import { company } from '../content/company';
-import { getDictionary, type SiteLocale } from '../i18n';
+import { getDictionary, getMessages, type SiteLocale } from '../i18n';
 import { telHref, whatsappHref } from '../lib/contact';
 import { breadcrumbSchema, graph, organizationSchema, webPageSchema } from '../lib/schema';
 import { pageMetadata } from '../lib/seo';
@@ -22,11 +22,12 @@ export function contactMetadata(locale: SiteLocale): Metadata {
 
 export function ContactView({ locale }: { locale: SiteLocale }) {
   const t = getDictionary(locale);
+  const msg = getMessages(locale);
   const c = t.contact;
   const address = [t.company.street, `${t.company.locality}, ${t.company.district}`, `${t.company.region} ${company.postalAddress.postalCode}`].join(', ');
   const [emailUser, emailDomain] = company.email.split('@');
   const channels = [
-    { label: c.channels.whatsapp, value: company.phoneDisplay, href: whatsappHref(t.common.defaultWhatsappMessage), icon: <FaWhatsapp />, note: c.channels.whatsappNote },
+    { label: c.channels.whatsapp, value: company.phoneDisplay, href: whatsappHref(msg.common.defaultWhatsappMessage), icon: <FaWhatsapp />, note: c.channels.whatsappNote },
     { label: c.channels.phone, value: company.phoneDisplay, href: telHref(), icon: <FaPhone />, note: c.channels.phoneNote },
     {
       label: c.channels.email,
@@ -128,7 +129,7 @@ export function ContactView({ locale }: { locale: SiteLocale }) {
               {c.option1Title}
             </h2>
             <div className="mt-10" data-reveal>
-              <EnquiryBuilder text={t.enquiry} />
+              <EnquiryBuilder text={t.enquiry} messageText={msg.enquiry} />
             </div>
           </div>
           <div aria-labelledby="email-form-title">

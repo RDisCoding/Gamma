@@ -1,6 +1,6 @@
 import { company } from '../../content/company';
 import { site } from '../../content/site';
-import { getDictionary, localePath, type SiteLocale } from '../../i18n';
+import { getDictionary, getMessages, localePath, type SiteLocale } from '../../i18n';
 
 /**
  * Plain HTML form posted to FormSubmit, which emails the enquiry to the
@@ -13,7 +13,7 @@ export default function EmailEnquiryForm({ locale }: { locale: SiteLocale }) {
     'w-full rounded-2xl border border-ink/15 bg-paper px-4 py-3.5 text-[1rem] text-ink outline-none transition-colors placeholder:text-ink-mute focus:border-sindoor';
   return (
     <form action={company.formEndpoint} method="POST" data-lead-form="contact_page" className="grid gap-5">
-      <input type="hidden" name="_subject" value={t.subject} />
+      <input type="hidden" name="_subject" value={getMessages(locale).emailForm.subject} />
       <input type="hidden" name="_next" value={`${site.url}${localePath(locale, '/thank-you')}`} />
       <input type="hidden" name="_template" value="table" />
       <input type="hidden" name="_captcha" value="false" />

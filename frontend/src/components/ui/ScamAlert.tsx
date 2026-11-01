@@ -65,7 +65,7 @@ export default function ScamAlert({ locale, variant = 'card', className = '' }: 
         <HiOutlineShieldExclamation aria-hidden="true" className="h-5 w-5" />
         {t.scam.label}
       </p>
-      <p className="mt-3 font-display text-[1.75rem] leading-tight text-ink">{t.scam.title}</p>
+      <p className="mt-3 font-display text-2xl leading-tight text-ink sm:text-[1.75rem]">{t.scam.title}</p>
       <p className="mt-3 leading-relaxed text-ink-soft">{t.scam.body}</p>
       {steps}
       <a
