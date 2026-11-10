@@ -1,6 +1,6 @@
 # matrugayatirth.com — SEO, AI search & redesign handover
 
-**Prepared:** 14 October 2026 · **Updated:** 2 November 2026 · **Scope:** audit, implementation and QA of the website in `frontend/`.
+**Prepared:** 14 October 2026 · **Updated:** 10 November 2026 · **Scope:** audit, implementation and QA of the website in `frontend/`.
 **Status:** deployed 15 October 2026. The 2 November update (search visibility, Telugu/Kannada/Tamil pages) is summarised directly below.
 
 > Nothing here guarantees rankings, AI citations or a number of enquiries. The work makes the site
@@ -24,6 +24,22 @@
 11. [Outstanding dependencies and the next 90 days](#11-outstanding-dependencies-and-the-next-90-days)
 12. [How to update the site](#12-how-to-update-the-site)
 13. [Fact sources](#13-fact-sources)
+
+---
+
+## Update — 10 November 2026: WhatsApp restriction
+
+WhatsApp restricted +91 98795 16707 for "spam, automated or bulk messaging" (it could still reply in existing chats but not start new ones). WhatsApp judges what an account **sends**, not whether its number appears on a website. The site already used `wa.me` click-to-chat links, so every WhatsApp button opens a chat the *visitor* starts. That is the safe kind.
+
+The risky part was the email form. It asked for a "Phone / WhatsApp number" and promised a WhatsApp reply, so each form lead meant the purohits started a new chat with someone who had never messaged them.
+
+| Change | Where |
+|---|---|
+| Form asks for a **phone number** and says "We will call you back". The form no longer promises a WhatsApp reply. | `emailForm.phone`, `emailForm.note` (all six languages) |
+| Thank-you page: families who prefer WhatsApp are asked to **message us first**. | `thankYou.intro` |
+| **"Save our number"** contact card (`/matrugaya-tirth.vcf`), linked on the contact and thank-you pages, generated from `company.ts`. | `src/app/matrugaya-tirth.vcf/route.ts`, `contactCardHref` |
+
+**Rules for the WhatsApp number:** reply only in chats the family started, and call form leads instead of WhatsApping them. Don't forward the same PDF or message to many chats: use WhatsApp Business *quick replies* or send a link to a page on the site. Don't add people to groups or broadcast lists unless they ask. Don't use auto-reply apps or modified WhatsApp versions (GB WhatsApp and similar). The Business app's own greeting and away messages are allowed.
 
 ---
 

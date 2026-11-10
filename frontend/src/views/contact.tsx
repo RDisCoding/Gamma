@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { FaEnvelope, FaPhone, FaWhatsapp } from 'react-icons/fa';
+import { FaAddressBook, FaEnvelope, FaPhone, FaWhatsapp } from 'react-icons/fa';
 import { richLines } from '../components/i18n/Rich';
 import JsonLd from '../components/seo/JsonLd';
 import EmailEnquiryForm from '../components/ui/EmailEnquiryForm';
@@ -9,7 +9,7 @@ import PageHero from '../components/ui/PageHero';
 import ScamAlert from '../components/ui/ScamAlert';
 import { company } from '../content/company';
 import { getDictionary, getMessages, type SiteLocale } from '../i18n';
-import { telHref, whatsappHref } from '../lib/contact';
+import { contactCardHref, telHref, whatsappHref } from '../lib/contact';
 import { breadcrumbSchema, graph, organizationSchema, webPageSchema } from '../lib/schema';
 import { pageMetadata } from '../lib/seo';
 
@@ -78,6 +78,12 @@ export function ContactView({ locale }: { locale: SiteLocale }) {
             </a>
           ))}
         </div>
+        <p className="mx-auto mt-6 flex max-w-[1440px] items-center gap-2 text-sindoor">
+          <FaAddressBook aria-hidden="true" />
+          <a href={contactCardHref} className="link-draw font-semibold">
+            {t.common.saveContact}
+          </a>
+        </p>
       </section>
 
       <section className="bg-paper-2 px-5 py-24 sm:px-8 lg:px-12 lg:py-32" aria-labelledby="locations-title">
