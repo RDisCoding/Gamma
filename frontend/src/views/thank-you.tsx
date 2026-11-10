@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { FaWhatsapp } from 'react-icons/fa';
+import { FaAddressBook, FaWhatsapp } from 'react-icons/fa';
 import LeadConfirmed from '../components/analytics/LeadConfirmed';
 import { richLines } from '../components/i18n/Rich';
 import CtaLink from '../components/ui/CtaLink';
 import PageHero from '../components/ui/PageHero';
 import { getDictionary, getMessages, localePath, type SiteLocale } from '../i18n';
-import { whatsappHref } from '../lib/contact';
+import { contactCardHref, whatsappHref } from '../lib/contact';
 import { pageMetadata } from '../lib/seo';
 
 export function thankYouMetadata(locale: SiteLocale): Metadata {
@@ -24,6 +24,9 @@ export function ThankYouView({ locale }: { locale: SiteLocale }) {
         <div className="hero-rise mt-10 flex flex-wrap gap-3" style={{ ['--d' as string]: 4 }}>
           <CtaLink href={whatsappHref(msg.common.defaultWhatsappMessage)} variant="whatsapp" icon={<FaWhatsapp />} cta="thank_you">
             {t.common.whatsappUs}
+          </CtaLink>
+          <CtaLink href={contactCardHref} external variant="ghost" icon={<FaAddressBook />}>
+            {t.common.saveContact}
           </CtaLink>
           <CtaLink href={localePath(locale, '/matrugaya-pooja-guide')} variant="ghost">
             {ty.guideCta}

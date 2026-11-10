@@ -31,6 +31,7 @@ export const en = {
     whatsappUs: 'WhatsApp us',
     call: 'Call',
     callNumber: 'Call {phone}',
+    saveContact: 'Save our number',
     keepReading: 'Keep reading',
     lastUpdated: 'Last updated',
     onThisPage: 'On this page',
@@ -172,12 +173,18 @@ export const en = {
     },
   },
 
+  /*
+   * Form enquiries are answered with a phone call, never by starting a
+   * WhatsApp chat: messaging people who have not messaged the number first is
+   * what WhatsApp treats as spam, and it restricted the number for it in
+   * Nov 2026. Families who want WhatsApp message us themselves (thank-you page).
+   */
   emailForm: {
     subject: 'New enquiry from matrugayatirth.com',
     name: 'Your name',
-    phone: 'Phone / WhatsApp number',
+    phone: 'Phone number',
     message: 'Which ritual, preferred dates and number of people',
-    note: 'Sent by email to {email}. We reply by phone or WhatsApp.',
+    note: 'Sent by email to {email}. We will call you back on this number.',
     submit: 'Send enquiry',
   },
 
@@ -1318,7 +1325,7 @@ export const en = {
     eyebrow: 'Enquiry sent',
     title: ['Thank you.', '*We will be in touch.*'],
     intro:
-      'Your enquiry has reached the purohits by email. We usually reply by phone or WhatsApp. If your travel date is close, message us directly as well.',
+      'Your enquiry has reached the purohits by email, and we will call you back. Prefer WhatsApp, or travelling soon? Send us a WhatsApp message and we will reply there.',
     guideCta: 'Read the guide while you wait',
   },
 };
